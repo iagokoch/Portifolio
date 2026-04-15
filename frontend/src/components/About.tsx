@@ -33,7 +33,7 @@ function About() {
         >
           <p className="text-slate-200 leading-relaxed mb-4">
             Sou um desenvolvedor Full-Stack em formação, atualmente estou
-            cursando Engenharia de Software na Catolica SC e atuo na área de TI
+            cursando Engenharia de Software na Católica SC e atuo na área de TI
             desde 2023. Apaixonado por resolver problemas e automatizar
             processos.
           </p>
@@ -101,7 +101,7 @@ function About() {
               },
               {
                 year: "2025 - Presente",
-                title: "Auxilair de TI",
+                title: "Auxiliar de TI",
                 company: "Anagê Imóveis",
                 description:
                   "Atuo como Auxiliar de TI na Anagê Imóveis, onde sou responsável por fornecer suporte técnico, suporte em sistemas, gestão de acessos e suporte a práticas de governança de TI ,manutenção de hardware, e suporte a infraestrutura de rede. Essa experiência tem me permitido aplicar meus conhecimentos técnicos e desenvolver habilidades de resolução de problemas em um ambiente profissional.",
