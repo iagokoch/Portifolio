@@ -1,7 +1,10 @@
 import { motion } from "motion/react";
 import { Heart, Github, Linkedin, Twitter } from "lucide-react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="py-12 px-6 bg-black border-t border-slate-900">
       <div className="max-w-6xl mx-auto">
@@ -13,14 +16,14 @@ function Footer() {
             viewport={{ once: true }}
             className="flex items-center gap-2 text-slate-300"
           >
-            <span>Built with</span>
+            <span>{t("footer.built")}</span>
             <motion.div
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1, repeat: Infinity, repeatDelay: 1 }}
             >
               <Heart className="w-4 h-4 text-orange-500 fill-orange-500" />
             </motion.div>
-            <span>and lots of coffee</span>
+            <span>{t("footer.coffee")}</span>
           </motion.div>
 
           <motion.div
@@ -31,13 +34,14 @@ function Footer() {
             className="flex gap-4"
           >
             {[
-              { Icon: Github, href: "#", label: "GitHub" },
-              { Icon: Linkedin, href: "#", label: "LinkedIn" },
+              { Icon: Github, href: "https://github.com/iagokoch", label: "GitHub" },
+              { Icon: Linkedin, href: "https://www.linkedin.com/in/iago-koch", label: "LinkedIn" },
               { Icon: Twitter, href: "#", label: "Twitter" },
             ].map(({ Icon, href, label }) => (
               <motion.a
                 key={label}
                 href={href}
+                target="_blank"
                 className="p-2 rounded-lg bg-slate-950 text-slate-400 hover:text-blue-400 hover:bg-slate-900 transition-colors"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
@@ -55,7 +59,7 @@ function Footer() {
             viewport={{ once: true }}
             className="text-slate-400 text-sm"
           >
-            © 2026 Iago Neermann Koch. All rights reserved
+            © 2026 Iago Neermann Koch. {t("footer.rights")}
           </motion.div>
         </div>
       </div>

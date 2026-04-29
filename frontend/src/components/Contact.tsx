@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Mail, MapPin, Phone, Send, Terminal } from "lucide-react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 function Contact() {
+  const { t } = useLanguage();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -10,9 +13,9 @@ function Contact() {
   });
 
   const [terminalOutput, setTerminalOutput] = useState([
-    "$ contato --init",
-    "> Formulario incializado...",
-    "> Pronto para receber mensagens!",
+    t("contact.terminal.init"),
+    t("contact.terminal.ready1"),
+    t("contact.terminal.ready2"),
   ]);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -20,25 +23,19 @@ function Contact() {
     setTerminalOutput([
       ...terminalOutput,
       `$ send --to=developer --from=${formData.email}`,
-      "> Estabelecendo conexão...",
-      "> Mensagem enviada com sucesso! ✓",
-      "> Agradeço pelo contato!",
+      t("contact.terminal.connecting"),
+      t("contact.terminal.success"),
+      t("contact.terminal.thanks"),
     ]);
-    setFormData({ name: ``, email: ``, message: `` });
+    setFormData({ name: "", email: "", message: "" });
   };
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   return (
-    <section
-      id="contact"
-      className="py-24 px-6 bg-linear-to-b from-slate-950 to-black"
-    >
+    <section id="contact" className="py-24 px-6 bg-linear-to-b from-slate-950 to-black">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -47,12 +44,10 @@ function Contact() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-linear-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent">
-            Entre em Contato
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-linear-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent pb-2">
+            {t("contact.title")}
           </h2>
-          <p className="text-xl text-slate-300">
-            Vamos criar projetos incríveis juntos!
-          </p>
+          <p className="text-xl text-slate-300">{t("contact.subtitle")}</p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
@@ -67,18 +62,13 @@ function Contact() {
             <div className="bg-slate-950/50 backdrop-blur-sm border border-slate-800 rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
                 <Terminal className="w-6 h-6 text-blue-400" />
-                Informações de Contato
+                {t("contact.info")}
               </h3>
-
               <div className="space-y-4">
                 {[
                   { icon: Mail, label: "Email", value: "iagon.koch@gmail.com" },
-                  { icon: Phone, label: "Phone", value: " +55 47 99174-7863" },
-                  {
-                    icon: MapPin,
-                    label: "Location",
-                    value: "Joinville, SC - Brazil",
-                  },
+                  { icon: Phone, label: "Phone", value: "+55 47 99174-7863" },
+                  { icon: MapPin, label: "Location", value: "Joinville, SC - Brazil" },
                 ].map((item) => {
                   const Icon = item.icon;
                   return (
@@ -91,9 +81,7 @@ function Contact() {
                         <Icon className="w-full h-full text-white" />
                       </div>
                       <div>
-                        <div className="text-sm text-slate-400 mb-1">
-                          {item.label}
-                        </div>
+                        <div className="text-sm text-slate-400 mb-1">{item.label}</div>
                         <div className="text-white">{item.value}</div>
                       </div>
                     </motion.div>
@@ -101,7 +89,8 @@ function Contact() {
                 })}
               </div>
             </div>
-            {/* Terminal Output */}
+
+            {/* Terminal */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -124,9 +113,7 @@ function Contact() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: index * 0.1 }}
-                    className={
-                      line.startsWith("$") ? "text-blue-400" : "text-slate-300"
-                    }
+                    className={line.startsWith("$") ? "text-blue-400" : "text-slate-300"}
                   >
                     {line}
                   </motion.div>
@@ -141,7 +128,8 @@ function Contact() {
               </div>
             </motion.div>
           </motion.div>
-          {/* Contact Form */}
+
+          {/* Form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -153,11 +141,8 @@ function Contact() {
               className="bg-slate-950/50 backdrop-blur-sm border border-slate-800 rounded-2xl p-8 space-y-6"
             >
               <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm text-slate-300 mb-2"
-                >
-                  Name
+                <label htmlFor="name" className="block text-sm text-slate-300 mb-2">
+                  {t("contact.nameLabel")}
                 </label>
                 <input
                   type="text"
@@ -167,16 +152,12 @@ function Contact() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
-                  placeholder="Your name"
+                  placeholder={t("contact.namePlaceholder")}
                 />
               </div>
-
               <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm text-slate-300 mb-2"
-                >
-                  Email
+                <label htmlFor="email" className="block text-sm text-slate-300 mb-2">
+                  {t("contact.emailLabel")}
                 </label>
                 <input
                   type="email"
@@ -186,16 +167,12 @@ function Contact() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
-                  placeholder="your.email@example.com"
+                  placeholder={t("contact.emailPlaceholder")}
                 />
               </div>
-
               <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm text-slate-300 mb-2"
-                >
-                  Message
+                <label htmlFor="message" className="block text-sm text-slate-300 mb-2">
+                  {t("contact.messageLabel")}
                 </label>
                 <textarea
                   id="message"
@@ -205,7 +182,7 @@ function Contact() {
                   required
                   rows={6}
                   className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"
-                  placeholder="Tell me about your project..."
+                  placeholder={t("contact.messagePlaceholder")}
                 />
               </div>
               <motion.button
@@ -215,7 +192,7 @@ function Contact() {
                 whileTap={{ scale: 0.98 }}
               >
                 <Send className="w-5 h-5" />
-                Send Message
+                {t("contact.send")}
               </motion.button>
             </form>
           </motion.div>
