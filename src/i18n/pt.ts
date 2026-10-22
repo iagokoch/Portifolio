@@ -24,7 +24,6 @@ export const pt = {
     skills: 'Skills',
     contact: 'Contato',
     github: 'GitHub ↗',
-    themeTitle: 'Alternar tema',
     menu: 'Menu',
     langLabel: 'Idioma',
   },

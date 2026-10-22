@@ -5,13 +5,11 @@ import { IKTile } from '../components/ui/IKTile'
 import { config } from '../config'
 import { useLang } from '../i18n/LangContext'
 import type { Lang } from '../i18n/types'
-import { useTheme } from '../theme/ThemeContext'
 
 const LANGS: Lang[] = ['pt', 'en']
 
 export function Navbar() {
   const { t, lang, setLang } = useLang()
-  const { theme, toggleTheme } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
 
   const links = [
@@ -59,16 +57,6 @@ export function Navbar() {
           >
             {t.nav.github}
           </Button>
-
-          <button
-            type="button"
-            onClick={toggleTheme}
-            title={t.nav.themeTitle}
-            aria-label={t.nav.themeTitle}
-            className="flex size-9 cursor-pointer items-center justify-center rounded-px border border-border-input bg-transparent text-[15px] text-fg hover:border-accent hover:text-accent"
-          >
-            {theme === 'light' ? '☾' : '☀'}
-          </button>
 
           <div role="group" aria-label={t.nav.langLabel} className="flex overflow-hidden rounded-px border border-border-input">
             {LANGS.map((l) => (

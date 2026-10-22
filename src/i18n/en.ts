@@ -24,7 +24,6 @@ export const en: Dict = {
     skills: 'Skills',
     contact: 'Contact',
     github: 'GitHub ↗',
-    themeTitle: 'Toggle theme',
     menu: 'Menu',
     langLabel: 'Language',
   },

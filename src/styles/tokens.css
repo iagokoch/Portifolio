@@ -1,6 +1,5 @@
-/* Tema escuro é o padrão; o claro entra via <html data-theme="light"> */
-:root,
-:root[data-theme='dark'] {
+/* Paleta única: tema escuro */
+:root {
   color-scheme: dark;
   --bg: #0c0d11;
   --panel: #14151b;
@@ -21,27 +20,4 @@
   --h2: #8a5a1c;
   --h3: #c9791b;
   --h4: #ff9f1c;
-}
-
-:root[data-theme='light'] {
-  color-scheme: light;
-  --bg: #f4f1ea;
-  --panel: #fbfaf6;
-  --panel-2: #eae7df;
-  --border: #a9a59b;
-  --border-input: #8e8a80;
-  --fg: #16151a;
-  --muted: #5d5b66;
-  --accent: #c2410c;
-  --on-accent: #ffffff;
-  --soft: #6d4aff;
-  --danger: #c4321f;
-  --grid: rgba(22, 21, 26, 0.055);
-  --shadow: #16151a;
-  --sel: rgba(194, 65, 12, 0.25);
-  --h0: #e2ded5;
-  --h1: #f3c9a6;
-  --h2: #e89a62;
-  --h3: #d46a2c;
-  --h4: #c2410c;
 }
