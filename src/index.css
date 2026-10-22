@@ -1,1 +1,103 @@
 @import 'tailwindcss';
+@import './styles/tokens.css';
+
+/* Os valores vêm de tokens.css e trocam com o tema; `inline` mantém o var() nas utilities */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-border: var(--border);
+  --color-border-input: var(--border-input);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-soft: var(--soft);
+  --color-danger: var(--danger);
+  --color-h0: var(--h0);
+  --color-h1: var(--h1);
+  --color-h2: var(--h2);
+  --color-h3: var(--h3);
+  --color-h4: var(--h4);
+
+  --font-pixel: 'Silkscreen', monospace;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --radius-px: 2px;
+
+  /* sombras "de pixel": sem blur, só deslocamento */
+  --shadow-px-sm: 3px 3px 0 var(--shadow);
+  --shadow-px-md: 4px 4px 0 var(--shadow);
+  --shadow-px: 5px 5px 0 var(--shadow);
+  --shadow-px-lg: 8px 8px 0 var(--shadow);
+}
+
+@keyframes ikblink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes ikpulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--accent);
+  }
+  100% {
+    box-shadow: 0 0 0 7px transparent;
+  }
+}
+
+@theme inline {
+  --animate-blink: ikblink 1s steps(1) infinite;
+  --animate-pulse-px: ikpulse 1.6s steps(6) infinite;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 68px;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--sel);
+    color: var(--fg);
+  }
+
+  :focus-visible {
+    outline: 2px dashed var(--soft);
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* Raiz do site: grade de 32px e container para as unidades cqw do design */
+.site-root {
+  container-type: inline-size;
+  position: relative;
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
