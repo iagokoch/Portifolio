@@ -21,7 +21,7 @@ function App() {
       {showIntro && <Intro onDone={() => setBooted(true)} />}
       <Navbar />
       <main>
-        <Hero />
+        <Hero active={!showIntro} />
         <Projects />
         <About />
         <Skills />

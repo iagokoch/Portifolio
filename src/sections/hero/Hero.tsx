@@ -1,16 +1,22 @@
+import { useState } from 'react'
+import { Critters } from '../../components/anim/Critters'
 import { Button } from '../../components/ui/Button'
 import { Container } from '../../components/ui/Container'
 import { Eyebrow } from '../../components/ui/Eyebrow'
+import { useReducedMotion } from '../../hooks/useReducedMotion'
 import { useLang } from '../../i18n/LangContext'
 import { Cartridge } from './Cartridge'
 
 // Os atributos data-crit marcam as linhas que os bichinhos "digitam" na animação do hero
-export function Hero() {
+export function Hero({ active }: { active: boolean }) {
   const { t } = useLang()
+  const reduced = useReducedMotion()
+  const [flown, setFlown] = useState(false)
+  const revealed = reduced || flown
   const h = t.hero
 
   return (
-    <section id="top" className="border-b border-border">
+    <section id="top" className="overflow-x-clip border-b border-border">
       <Container className="flex flex-wrap items-center gap-14 py-[clamp(56px,7.8cqw,112px)]">
         <div className="flex min-w-0 flex-[1_1_460px] flex-col items-start gap-[26px]">
           <div data-crit="0">
@@ -35,19 +41,19 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="flex min-w-0 flex-[1_1_380px] justify-end">
+        {/* a coluna da direita entra depois que os bichinhos terminam de montar o texto */}
+        <div
+          className={`flex min-w-0 flex-[1_1_380px] justify-end transition-[opacity,transform] duration-[350ms] ease-[steps(5)] ${
+            revealed ? 'opacity-100' : 'translate-y-2.5 opacity-0'
+          }`}
+        >
           <Cartridge />
         </div>
       </Container>
 
-      {/* faixa de chão onde os bichinhos andam (a animação entra numa etapa seguinte) */}
+      {/* faixa de chão onde os bichinhos andam */}
       <Container className="-mt-6 pb-10">
-        <div className="relative h-11">
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-1 bg-[repeating-linear-gradient(90deg,var(--border-input)_0_48px,transparent_48px_54px)]"
-          />
-        </div>
+        <Critters active={active} onFlown={() => setFlown(true)} />
       </Container>
     </section>
   )
