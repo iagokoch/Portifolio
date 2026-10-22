@@ -1,3 +1,4 @@
+import { Crew } from '../../components/anim/Crew'
 import { Button } from '../../components/ui/Button'
 import { Section } from '../../components/ui/Section'
 import { SectionHeader } from '../../components/ui/SectionHeader'
@@ -45,6 +46,7 @@ export function Contact() {
           </>
         }
       />
+      <Crew message={t.crew.contact} wait className="-mt-2 mb-7" />
       <div className="flex flex-wrap items-stretch gap-7">
         <Terminal />
         <ContactForm />

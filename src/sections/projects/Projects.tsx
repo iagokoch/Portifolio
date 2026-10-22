@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { Crew } from '../../components/anim/Crew'
 import { Button } from '../../components/ui/Button'
 import { Section } from '../../components/ui/Section'
 import { SectionHeader } from '../../components/ui/SectionHeader'
@@ -66,6 +67,7 @@ export function Projects() {
         className="mb-12"
         aside={<div className="font-mono text-[13px] text-muted">{t.projects.count}</div>}
       />
+      <Crew message={t.crew.projects} wait className="-mt-2 mb-8" />
       <div className="grid grid-cols-[repeat(auto-fit,minmax(min(440px,100%),1fr))] gap-7">
         {projects.map((p, i) => (
           <ProjectCard key={p.id} project={p} index={i} />

@@ -1,3 +1,4 @@
+import { Crew } from '../components/anim/Crew'
 import { PixelGrid } from '../components/ui/PixelGrid'
 import { Section } from '../components/ui/Section'
 import { SectionHeader } from '../components/ui/SectionHeader'
@@ -36,6 +37,7 @@ export function Skills() {
         className="mb-11"
         aside={<div className="font-mono text-[13px] text-muted">{t.skills.meta}</div>}
       />
+      <Crew message={t.crew.skills} className="-mt-2 mb-7" />
       <div className="grid grid-cols-[repeat(auto-fit,minmax(196px,1fr))] gap-4">
         {GROUPS.map((g, i) => {
           const dashed = g.learning ? 'border-dashed' : ''

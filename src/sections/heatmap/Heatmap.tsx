@@ -1,4 +1,5 @@
 import { memo, useCallback, useMemo, useState } from 'react'
+import { Crew } from '../../components/anim/Crew'
 import { Section } from '../../components/ui/Section'
 import { SectionHeader } from '../../components/ui/SectionHeader'
 import { config } from '../../config'
@@ -86,6 +87,7 @@ export function Heatmap() {
         }
       />
 
+      <Crew message={t.crew.heatmap} className="-mt-1 mb-7" />
       <div
         data-load="h"
         className="overflow-x-auto rounded-px border border-border-input bg-panel px-6 pt-6 pb-5 shadow-px md:overflow-x-visible"
