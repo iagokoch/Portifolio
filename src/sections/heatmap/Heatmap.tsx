@@ -4,7 +4,7 @@ import { Section } from '../../components/ui/Section'
 import { SectionHeader } from '../../components/ui/SectionHeader'
 import { config } from '../../config'
 import { useContributions } from '../../hooks/useContributions'
-import { useLang } from '../../i18n/LangContext'
+import { useLang } from '../../i18n/useLang'
 import { buildWeeks, emptyYear, monthLabels, parseDay, type Week } from '../../lib/heatmap'
 
 const ROW = 'h-3.5'

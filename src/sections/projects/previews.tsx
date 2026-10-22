@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { useLang } from '../../i18n/LangContext'
+import { useLang } from '../../i18n/useLang'
 
 // Mini-telas ilustrativas dos projetos (só dados de demonstração, nada real)
 

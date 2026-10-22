@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { config } from '../../config'
-import { useLang } from '../../i18n/LangContext'
+import { useLang } from '../../i18n/useLang'
 import { out, type OutLine } from '../../i18n/types'
 
 // `welcome` não guarda texto: é traduzido na renderização, então acompanha a troca de idioma

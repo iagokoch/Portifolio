@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import { useLang } from '../../i18n/LangContext'
+import { useLang } from '../../i18n/useLang'
 
 /** Janelinha `profile.ts` sobreposta ao canto do cartucho */
 export function CodeCard() {

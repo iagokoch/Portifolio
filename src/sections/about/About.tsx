@@ -1,7 +1,7 @@
 import { Crew } from '../../components/anim/Crew'
 import { Section } from '../../components/ui/Section'
 import { SectionHeader } from '../../components/ui/SectionHeader'
-import { useLang } from '../../i18n/LangContext'
+import { useLang } from '../../i18n/useLang'
 import { PlayerCard } from './PlayerCard'
 import { Timeline } from './Timeline'
 

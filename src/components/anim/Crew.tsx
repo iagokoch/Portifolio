@@ -1,7 +1,8 @@
 import { useEffect, useLayoutEffect, useRef } from 'react'
 import { prefersReducedMotion } from '../../hooks/useReducedMotion'
-import { useLang } from '../../i18n/LangContext'
-import { Critter, CW, setFrame, SH } from './Critter'
+import { useLang } from '../../i18n/useLang'
+import { Critter } from './Critter'
+import { CW, setFrame, SH } from './sprite'
 
 const POOL = 18 // carregadores simultâneos
 const MAXN = POOL + 1 // + o supervisor (índice 0)

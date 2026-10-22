@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { Button } from '../../components/ui/Button'
 import { PixelGrid } from '../../components/ui/PixelGrid'
-import { useLang } from '../../i18n/LangContext'
+import { useLang } from '../../i18n/useLang'
 import { CHECK, cells, ICON_PALETTE } from '../../lib/pixels'
 
 const CHECK_CELLS = cells(CHECK, ICON_PALETTE)

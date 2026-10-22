@@ -3,7 +3,7 @@ import { Button } from '../components/ui/Button'
 import { Container } from '../components/ui/Container'
 import { IKTile } from '../components/ui/IKTile'
 import { config } from '../config'
-import { useLang } from '../i18n/LangContext'
+import { useLang } from '../i18n/useLang'
 import type { Lang } from '../i18n/types'
 
 const LANGS: Lang[] = ['pt', 'en']

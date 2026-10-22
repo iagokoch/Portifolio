@@ -2,7 +2,7 @@ import { Crew } from '../components/anim/Crew'
 import { PixelGrid } from '../components/ui/PixelGrid'
 import { Section } from '../components/ui/Section'
 import { SectionHeader } from '../components/ui/SectionHeader'
-import { useLang } from '../i18n/LangContext'
+import { useLang } from '../i18n/useLang'
 import type { Dict } from '../i18n/pt'
 import { cells, ICON_PALETTE, ICONS, type IconName } from '../lib/pixels'
 

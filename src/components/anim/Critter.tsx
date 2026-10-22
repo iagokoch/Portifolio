@@ -1,9 +1,7 @@
 import type { Ref } from 'react'
+import { CW, SH } from './sprite'
 
 // Bichinho de 12×6 pixels desenhado a 4px por pixel (48×24)
-export const CPX = 4
-export const CW = 12 * CPX
-export const SH = 6 * CPX
 
 const BODY = ['..o......o..', '...oooooo...', '..oooooooo..', 'oooeooooeooo', '..oooooooo..']
 const LEG_A = '..o.o..o.o..'
@@ -62,15 +60,4 @@ export function Critter({ ref, block = false, hat = false }: CritterProps) {
       {hat && <g>{HAT}</g>}
     </svg>
   )
-}
-
-/** Alterna os quadros de caminhada e o bloco; o display inicial é definido aqui, não no JSX */
-export function setFrame(svg: SVGSVGElement, moving: boolean, frameB: boolean, showBlock?: boolean) {
-  const g = svg.children
-  const legA = g[1] as SVGElement | undefined
-  const legB = g[2] as SVGElement | undefined
-  const blk = g[3] as SVGElement | undefined
-  if (legA) legA.style.display = moving && frameB ? 'none' : ''
-  if (legB) legB.style.display = moving && frameB ? '' : 'none'
-  if (blk && showBlock !== undefined) blk.style.display = showBlock ? '' : 'none'
 }

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Button } from '../components/ui/Button'
 import { IKTile } from '../components/ui/IKTile'
-import { useLang } from '../i18n/LangContext'
+import { useLang } from '../i18n/useLang'
 
 const SEGMENTS = 20
 const TICK_MS = 60 // 20 × 60ms ≈ 1,2 s

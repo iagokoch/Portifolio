@@ -2,7 +2,7 @@ import { Button } from '../components/ui/Button'
 import { Container } from '../components/ui/Container'
 import { IKTile } from '../components/ui/IKTile'
 import { whatsappLink } from '../config'
-import { useLang } from '../i18n/LangContext'
+import { useLang } from '../i18n/useLang'
 
 export function Footer() {
   const { t } = useLang()

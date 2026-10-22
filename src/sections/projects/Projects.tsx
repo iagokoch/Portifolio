@@ -5,7 +5,7 @@ import { Section } from '../../components/ui/Section'
 import { SectionHeader } from '../../components/ui/SectionHeader'
 import { Tag } from '../../components/ui/Tag'
 import { projects, type Project, type ProjectId } from '../../data/projects'
-import { useLang } from '../../i18n/LangContext'
+import { useLang } from '../../i18n/useLang'
 import { MicroLearnPreview, OrdersPreview, PetFriendPreview, TifluxPreview } from './previews'
 
 const PREVIEWS: Record<ProjectId, ReactNode> = {

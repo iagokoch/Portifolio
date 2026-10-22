@@ -4,7 +4,7 @@ import { Button } from '../../components/ui/Button'
 import { Container } from '../../components/ui/Container'
 import { Eyebrow } from '../../components/ui/Eyebrow'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
-import { useLang } from '../../i18n/LangContext'
+import { useLang } from '../../i18n/useLang'
 import { Cartridge } from './Cartridge'
 
 // Os atributos data-crit marcam as linhas que os bichinhos "digitam" na animação do hero

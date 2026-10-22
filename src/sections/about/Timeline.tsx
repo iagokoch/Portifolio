@@ -1,4 +1,4 @@
-import { useLang } from '../../i18n/LangContext'
+import { useLang } from '../../i18n/useLang'
 
 const NODE = 'size-[22px] flex-none rounded-px'
 const PAST_NODE = `${NODE} relative z-[1] border border-muted bg-border-input`

@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef } from 'react'
 import { prefersReducedMotion } from '../../hooks/useReducedMotion'
-import { Critter, CW, setFrame, SH } from './Critter'
+import { Critter } from './Critter'
+import { CW, setFrame, SH } from './sprite'
 
 const N = 6
 const KEEP = N - 1 // o último bichinho fica e segue o mouse

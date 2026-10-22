@@ -1,5 +1,5 @@
 import { PixelGrid } from '../../components/ui/PixelGrid'
-import { useLang } from '../../i18n/LangContext'
+import { useLang } from '../../i18n/useLang'
 import { AVATAR_CELLS } from '../../lib/pixels'
 import { CodeCard } from './CodeCard'
 
