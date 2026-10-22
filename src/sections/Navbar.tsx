@@ -55,7 +55,7 @@ export function Navbar() {
             rel="noopener noreferrer"
             variant="secondary"
             size="xs"
-            className="hidden md:inline-flex"
+            className="max-md:hidden"
           >
             {t.nav.github}
           </Button>

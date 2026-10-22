@@ -15,7 +15,8 @@ interface SectionProps {
 /** Seção de página: borda inferior, fundo alternado e padding vertical responsivo */
 export function Section({ id, panel = false, noBorder = false, innerClassName = '', children }: SectionProps) {
   return (
-    <section id={id} className={`${panel ? 'bg-panel' : ''} ${noBorder ? '' : 'border-b border-border'}`}>
+    // overflow-x-clip: os bichinhos da animação entram e saem por fora da tela sem criar rolagem horizontal
+    <section id={id} className={`overflow-x-clip ${panel ? 'bg-panel' : ''} ${noBorder ? '' : 'border-b border-border'}`}>
       <Container className={`py-[clamp(64px,7.8cqw,112px)] ${innerClassName}`}>{children}</Container>
     </section>
   )

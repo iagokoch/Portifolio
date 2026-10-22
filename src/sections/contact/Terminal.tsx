@@ -3,7 +3,9 @@ import { config } from '../../config'
 import { useLang } from '../../i18n/LangContext'
 import { out, type OutLine } from '../../i18n/types'
 
-type Line = { k: 'cmd' | 'out' | 'ok' | 'err'; t: string }
+// `welcome` não guarda texto: é traduzido na renderização, então acompanha a troca de idioma
+type Line = { k: 'cmd' | 'out' | 'ok' | 'err' | 'welcome'; t: string }
+const WELCOME: Line = { k: 'welcome', t: '' }
 
 const CHIPS = ['help', 'about', 'projects', 'skills', 'contact', 'github', 'clear', 'sudo hire iago']
 
@@ -13,6 +15,7 @@ const COLOR: Record<Line['k'], string> = {
   out: 'text-[#a3a6b5]',
   ok: 'text-[#b9a6ff]',
   err: 'text-[#ff6b5f]',
+  welcome: 'text-[#b9a6ff]',
 }
 
 export function Terminal() {
@@ -24,7 +27,7 @@ export function Terminal() {
   const inputRef = useRef<HTMLInputElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
 
-  const lines: Line[] = history ?? [{ k: 'ok', t: term.welcome }]
+  const lines: Line[] = history ?? [WELCOME]
 
   useEffect(() => {
     const el = scrollRef.current
@@ -69,7 +72,7 @@ export function Terminal() {
           {lines.map((l, i) => (
             <div key={i} className="break-words whitespace-pre-wrap">
               {l.k === 'cmd' && <span className="text-[#ff9f1c]">{term.prompt}</span>}
-              <span className={COLOR[l.k]}>{l.t}</span>
+              <span className={COLOR[l.k]}>{l.k === 'welcome' ? term.welcome : l.t}</span>
             </div>
           ))}
           <label className="relative flex items-center whitespace-pre">
