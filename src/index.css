@@ -91,13 +91,17 @@
   }
 }
 
-/* Raiz do site: grade de 32px e container para as unidades cqw do design */
+/* Raiz do site: container para as unidades cqw do design */
 .site-root {
   container-type: inline-size;
   position: relative;
+}
+
+/* Fundo com grade; o passo padrão é 32px, `[--grid-size:16px]` muda */
+.bg-grid {
   background-color: var(--bg);
   background-image:
     linear-gradient(var(--grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-size: var(--grid-size, 32px) var(--grid-size, 32px);
 }
