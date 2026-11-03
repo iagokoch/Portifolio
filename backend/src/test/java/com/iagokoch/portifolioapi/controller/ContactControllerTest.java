@@ -13,7 +13,7 @@ import com.iagokoch.portifolioapi.config.WebConfig;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+
 
 @Import(WebConfig.class)
 @WebMvcTest(ContactController.class)
@@ -118,5 +118,16 @@ class ContactControllerTest {
                                 }
                                 """))
                 .andExpect(status().isCreated());
+    }
+
+    @Test
+    void shouldReturnBadRequestWhenBodyIsMalformed() throws Exception{
+        mockMvc.perform(post("/api/contact")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(
+                        "{nao-e-json"
+                ))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.detail").value("Corpo da requisição inválido"));
     }
 }
