@@ -41,6 +41,12 @@ export const en: Dict = {
     open: 'View project →',
     code: 'View code ↗',
     illustration: 'illustration',
+    back: '← /projects',
+    prev: 'Previous project',
+    next: 'Next project',
+    screens: { agenda: 'Schedule', pacientes: 'Patients', inicio: 'Home', disponibilidade: 'Availability' },
+    shotsNote: 'Illustrative screens, no real data.',
+    screenNote: 'Illustration with no real data.',
     items: {
       dentagenda: {
         short: 'Scheduling for Colzani Odontologia.',

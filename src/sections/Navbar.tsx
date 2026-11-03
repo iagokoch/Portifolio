@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router'
 import { Button } from '../components/ui/Button'
 import { Container } from '../components/ui/Container'
 import { Pet } from '../components/ui/Pet'
@@ -12,12 +13,13 @@ export function Navbar() {
   const { t, lang, setLang } = useLang()
   const [menuOpen, setMenuOpen] = useState(false)
 
+  // `/#secao`: funciona da home e da página de um projeto (o ScrollManager rola até a seção)
   const links = [
-    { href: '#projetos', label: t.nav.projects },
-    { href: '#sobre', label: t.nav.about },
-    { href: '#skills', label: t.nav.skills },
-    { href: '#atividade', label: t.nav.activity },
-    { href: '#contato', label: t.nav.contact },
+    { to: '/#projetos', label: t.nav.projects },
+    { to: '/#sobre', label: t.nav.about },
+    { to: '/#skills', label: t.nav.skills },
+    { to: '/#atividade', label: t.nav.activity },
+    { to: '/#contato', label: t.nav.contact },
   ]
 
   useEffect(() => {
@@ -30,21 +32,21 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-[rgba(14,16,20,.86)] backdrop-blur-[12px]">
       <Container className="flex h-[68px] items-center gap-7">
-        <a
-          href="#top"
+        <Link
+          to="/"
           aria-label={t.nav.home}
           className="group flex items-center gap-3 text-lg font-bold tracking-[-0.01em] text-ink no-underline"
         >
           <Pet color="blue" size={30} className="transition-transform duration-200 group-hover:-translate-y-[3px]" />
           iago.koch
-        </a>
+        </Link>
 
         <div className="ml-auto flex items-center gap-[30px]">
           <nav aria-label="Principal" className="hidden gap-[30px] font-mono text-[13px] @min-[820px]:flex">
             {links.map((l) => (
-              <a key={l.href} href={l.href} className="text-ink-2 no-underline transition-colors hover:text-ink">
+              <Link key={l.to} to={l.to} className="text-ink-2 no-underline transition-colors hover:text-ink">
                 {l.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -92,17 +94,25 @@ export function Navbar() {
       {menuOpen && (
         <nav id="mobile-menu" aria-label="Principal" className="border-t border-line bg-bg @min-[820px]:hidden">
           <Container className="flex flex-col py-2 font-mono text-[13px]">
-            {[...links, { href: config.githubUrl, label: t.nav.github }].map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
+            {links.map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
                 onClick={() => setMenuOpen(false)}
-                {...(l.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 className="py-3 text-ink-2 no-underline transition-colors hover:text-ink"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
+            <a
+              href={config.githubUrl}
+              onClick={() => setMenuOpen(false)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-3 text-ink-2 no-underline transition-colors hover:text-ink"
+            >
+              {t.nav.github}
+            </a>
           </Container>
         </nav>
       )}

@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import { Button } from '../components/ui/Button'
 import { Container } from '../components/ui/Container'
 import { IKTile } from '../components/ui/IKTile'
@@ -26,9 +27,9 @@ export function Footer() {
             <span aria-hidden="true" className="size-2 bg-accent" />
             {t.footer.whatsapp}
           </Button>
-          <a href="#top" className="font-mono text-[13px] text-fg no-underline hover:text-accent">
+          <Link to="/" className="font-mono text-[13px] text-fg no-underline hover:text-accent">
             {t.footer.top}
-          </a>
+          </Link>
         </div>
       </Container>
     </footer>

@@ -1,4 +1,5 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react'
+import { Link } from 'react-router'
 
 // `subtle` = botão do header (prata); `outline-accent` é um apelido temporário de `secondary` (v4)
 type Variant = 'primary' | 'secondary' | 'subtle' | 'outline-accent'
@@ -31,15 +32,31 @@ interface CommonProps {
   children: ReactNode
 }
 
-type AnchorProps = CommonProps & { href: string } & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof CommonProps | 'href'>
-type NativeButtonProps = CommonProps & { href?: undefined } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof CommonProps>
+type OmitCommon<T> = Omit<T, keyof CommonProps | 'href'>
 
-export type ButtonProps = AnchorProps | NativeButtonProps
+/** Link externo ou âncora da mesma página */
+type AnchorProps = CommonProps & { href: string; to?: undefined } & OmitCommon<AnchorHTMLAttributes<HTMLAnchorElement>>
+/** Navegação interna (react-router) */
+type RouteProps = CommonProps & { to: string; href?: undefined } & OmitCommon<AnchorHTMLAttributes<HTMLAnchorElement>>
+type NativeButtonProps = CommonProps & { href?: undefined; to?: undefined } & Omit<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    keyof CommonProps
+  >
+
+export type ButtonProps = AnchorProps | RouteProps | NativeButtonProps
 
 export function Button(props: ButtonProps) {
   const { variant = 'primary', size = 'md', className = '', children, ...rest } = props
   const classes = `${BASE} ${VARIANTS[variant]} ${SIZES[size]} ${className}`
 
+  if (props.to !== undefined) {
+    const { to, ...linkRest } = rest as Omit<RouteProps, keyof CommonProps>
+    return (
+      <Link to={to} className={classes} {...linkRest}>
+        {children}
+      </Link>
+    )
+  }
   if (props.href !== undefined) {
     const { href, ...anchorRest } = rest as Omit<AnchorProps, keyof CommonProps>
     return (

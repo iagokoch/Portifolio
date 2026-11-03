@@ -90,7 +90,7 @@ function ProjectRow({ project, index, active, onEnter, onHover, onLeave }: RowPr
                     <Tag key={tag}>{tag}</Tag>
                   ))}
                 </div>
-                <Button href={`/projetos/${project.id}`} className="mt-1.5">
+                <Button to={`/projetos/${project.id}`} className="mt-1.5">
                   {t.projects.open}
                 </Button>
               </div>

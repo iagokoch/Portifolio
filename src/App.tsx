@@ -1,26 +1,20 @@
-import { About } from './sections/about/About'
-import { Contact } from './sections/contact/Contact'
+import { Navigate, Route, Routes } from 'react-router'
+import { ScrollManager } from './components/ScrollManager'
+import { Home } from './pages/Home'
+import { ProjectPage } from './pages/ProjectPage'
 import { Footer } from './sections/Footer'
-import { Heatmap } from './sections/heatmap/Heatmap'
-import { Hero } from './sections/hero/Hero'
 import { Navbar } from './sections/Navbar'
-import { Projects } from './sections/projects/Projects'
-import { SideRail } from './sections/SideRail'
-import { Skills } from './sections/Skills'
 
 function App() {
   return (
     <div className="site-root min-h-screen">
+      <ScrollManager />
       <Navbar />
-      <SideRail />
-      <main>
-        <Hero />
-        <Projects />
-        <About />
-        <Skills />
-        <Heatmap />
-        <Contact />
-      </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projetos/:slug" element={<ProjectPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
       <Footer />
     </div>
   )

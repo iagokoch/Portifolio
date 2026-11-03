@@ -16,7 +16,6 @@ export function LangProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en'
-    document.title = dictionaries[lang].meta.title
     document.querySelector('meta[name="description"]')?.setAttribute('content', dictionaries[lang].meta.description)
     writeStorage(KEY, lang)
   }, [lang])

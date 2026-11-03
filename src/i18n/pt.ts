@@ -41,6 +41,12 @@ export const pt = {
     open: 'Ver projeto →',
     code: 'Ver código ↗',
     illustration: 'ilustração',
+    back: '← /projetos',
+    prev: 'Projeto anterior',
+    next: 'Próximo projeto',
+    screens: { agenda: 'Agenda', pacientes: 'Pacientes', inicio: 'Início', disponibilidade: 'Disponibilidade' },
+    shotsNote: 'Telas ilustrativas, sem dados reais.',
+    screenNote: 'Ilustração sem dados reais.',
     items: {
       dentagenda: {
         short: 'Agendamento para a Colzani Odontologia.',
