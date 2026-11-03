@@ -1,78 +1,57 @@
-import { Crew } from '../components/anim/Crew'
-import { PixelGrid } from '../components/ui/PixelGrid'
+import { Icon, type IconName } from '../components/ui/Icon'
+import { Reveal } from '../components/ui/Reveal'
 import { Section } from '../components/ui/Section'
-import { SectionHeader } from '../components/ui/SectionHeader'
+import { SectionTitle } from '../components/ui/SectionTitle'
 import { useLang } from '../i18n/useLang'
 import type { Dict } from '../i18n/pt'
-import { cells, ICON_PALETTE, ICONS, type IconName } from '../lib/pixels'
 
 interface SkillGroup {
   key: keyof Dict['skills']['groups']
   icon: IconName
   items: string[]
-  /** Em aprendizado: borda tracejada e pontos lavanda */
+  /** Em aprendizado: borda tracejada */
   learning?: boolean
 }
 
 const GROUPS: SkillGroup[] = [
-  { key: 'backend', icon: 'backend', items: ['Python', 'Java', 'FastAPI', 'Node.js', 'Express'] },
-  { key: 'frontend', icon: 'frontend', items: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'] },
-  { key: 'data', icon: 'data', items: ['PostgreSQL', 'MySQL'] },
-  { key: 'infra', icon: 'infra', items: ['Docker', 'Linux', 'Active Directory', 'Microsoft 365', 'CI/CD'] },
-  { key: 'learning', icon: 'learning', items: ['Spring Boot'], learning: true },
+  { key: 'backend', icon: 'code', items: ['Python', 'Java', 'FastAPI', 'Node.js', 'Express'] },
+  { key: 'frontend', icon: 'monitor', items: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'] },
+  { key: 'data', icon: 'database', items: ['PostgreSQL', 'MySQL'] },
+  { key: 'infra', icon: 'cloud', items: ['Docker', 'Linux', 'Active Directory', 'Microsoft 365', 'CI/CD'] },
+  { key: 'learning', icon: 'book', items: ['Spring Boot'], learning: true },
 ]
-
-const ICON_CELLS = Object.fromEntries(
-  (Object.keys(ICONS) as IconName[]).map((name) => [name, cells(ICONS[name], ICON_PALETTE)]),
-) as Record<IconName, string[]>
 
 export function Skills() {
   const { t } = useLang()
 
   return (
     <Section id="skills">
-      <SectionHeader
-        eyebrow={t.skills.eyebrow}
-        title={t.skills.title}
-        className="mb-11"
-        aside={<div className="font-mono text-[13px] text-muted">{t.skills.meta}</div>}
-      />
-      <Crew message={t.crew.skills} className="-mt-2 mb-7" />
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(196px,1fr))] gap-4">
-        {GROUPS.map((g, i) => {
-          const dashed = g.learning ? 'border-dashed' : ''
-          return (
+      <Reveal>
+        <SectionTitle request={t.skills.request} status={t.skills.status} title={t.skills.title} className="max-w-[900px]" />
+      </Reveal>
+      <div className="mt-11 grid grid-cols-2 gap-3.5 @min-[820px]:grid-cols-5">
+        {GROUPS.map((g) => (
+          <Reveal key={g.key}>
             <div
-              key={g.key}
-              data-load="s"
-              className={`flex flex-col gap-3.5 rounded-px border border-border-input bg-bg p-4 shadow-px-md ${dashed}`}
+              className={`flex h-full flex-col gap-4 rounded-xl border border-line-strong bg-card px-[18px] py-5 transition-[transform,border-color] duration-[350ms] ease-out hover:-translate-y-1 hover:border-[rgba(240,237,231,.5)] ${
+                g.learning ? 'border-dashed' : ''
+              }`}
             >
               <div className="flex items-center justify-between">
-                <div className="flex size-[46px] items-center justify-center border border-border bg-panel-2">
-                  <PixelGrid cells={ICON_CELLS[g.icon]} cols={8} size={28} />
-                </div>
-                <span className="font-mono text-[11px] text-muted">
-                  {t.skills.slot} {String(i + 1).padStart(2, '0')}
+                <span className="flex size-[42px] items-center justify-center rounded-[9px] border border-line-strong bg-surface text-ink">
+                  <Icon name={g.icon} size={20} />
                 </span>
+                <span className="font-mono text-xs text-ink-2">×{g.items.length}</span>
               </div>
-              <div className="flex items-baseline justify-between gap-2">
-                <span className="font-pixel text-base">{t.skills.groups[g.key]}</span>
-                <span className="font-mono text-[11px] text-muted">×{g.items.length}</span>
-              </div>
-              <div className="flex flex-wrap gap-1.5">
+              <b className="text-[19px] tracking-[-0.01em]">{t.skills.groups[g.key]}</b>
+              <ul className="m-0 flex list-none flex-col gap-1.5 p-0 text-[15px] text-ink-2">
                 {g.items.map((item) => (
-                  <span
-                    key={item}
-                    className={`inline-flex items-center gap-1.5 rounded-px border border-border bg-panel-2 px-[9px] py-[5px] font-mono text-[12.5px] ${dashed}`}
-                  >
-                    <span className={`size-[5px] ${g.learning ? 'bg-soft' : 'bg-accent'}`} />
-                    {item}
-                  </span>
+                  <li key={item}>{item}</li>
                 ))}
-              </div>
+              </ul>
             </div>
-          )
-        })}
+          </Reveal>
+        ))}
       </div>
     </Section>
   )

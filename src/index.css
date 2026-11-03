@@ -177,12 +177,3 @@
   container-type: inline-size;
   position: relative;
 }
-
-/* Temporário (v4): só o PlayerCard ainda usa; sai quando ele for removido */
-.bg-grid {
-  background-color: var(--bg);
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: var(--grid-size, 32px) var(--grid-size, 32px);
-}

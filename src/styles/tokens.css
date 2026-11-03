@@ -42,6 +42,5 @@
   --on-accent: var(--bg);
   --soft: var(--text-2);
   --danger: var(--error);
-  --grid: rgba(240, 237, 231, 0.04);
   --shadow: transparent;
 }
