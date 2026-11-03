@@ -1,9 +1,9 @@
 // Dados de contato e links. Os valores de e-mail, telefone e WhatsApp são placeholders: troque aqui.
 export const config = {
-  email: 'seu-email@exemplo.com',
-  phone: '(47) 00000-0000',
+  email: 'iagon.koch@gmail.com',
+  phone: '(47) 99174-7863',
   /** Formato internacional, só dígitos (55 + DDD + número) */
-  whatsappNumber: '5547000000000',
+  whatsappNumber: '5547991747863',
   githubUser: 'iagokoch',
   githubUrl: 'https://github.com/iagokoch',
 } as const
