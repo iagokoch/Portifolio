@@ -1,22 +1,40 @@
-import { config } from '../config'
+import type { ScreenKind } from '../components/illustrations/kinds'
 
-export type ProjectId = 'microlearn' | 'petfriend' | 'orders' | 'tiflux'
+export type ProjectId =
+  | 'dentagenda'
+  | 'monitoolring'
+  | 'email-to-ticket'
+  | 'axevoke'
+  | 'petfriend-connect'
+  | 'dashboard-tiflux'
 
 export interface Project {
+  /** Também é o slug da página do projeto: /projetos/:id */
   id: ProjectId
   name: string
-  tags: string[]
-  /** `soft` = acadêmico/dupla, `accent` = em andamento (com ponto) */
-  statusVariant: 'soft' | 'accent'
-  repoUrl: string
-  /** Sem demoUrl, o card mostra "Link da demo em breve" */
-  demoUrl?: string
+  /** Sem repoUrl o repositório é privado: a página não mostra "Ver código" */
+  repoUrl?: string
+  /** Ilustração exibida no tablet (até haver prints reais) */
+  screen: ScreenKind
 }
 
-// TODO: trocar repoUrl pelos repositórios reais e demoUrl pelos links publicados
+// Textos (descrição, métrica, tecnologias, destaques) ficam em src/i18n, por idioma.
+// Repositórios conforme o handoff do design v5: confirme antes de publicar.
 export const projects: Project[] = [
-  { id: 'microlearn', name: 'MicroLearn', tags: ['Node.js', 'Express', 'EJS', 'MySQL'], statusVariant: 'soft', repoUrl: config.githubUrl, demoUrl: '#' },
-  { id: 'petfriend', name: 'PetFriend Connect', tags: ['React', 'TypeScript', 'CI/CD'], statusVariant: 'soft', repoUrl: config.githubUrl, demoUrl: '#' },
-  { id: 'orders', name: 'order-processing-api', tags: ['Node.js', 'Express', 'PostgreSQL'], statusVariant: 'accent', repoUrl: config.githubUrl },
-  { id: 'tiflux', name: 'Dashboard TIflux', tags: ['FastAPI', 'React', 'TypeScript', 'Vite'], statusVariant: 'accent', repoUrl: config.githubUrl },
+  { id: 'dentagenda', name: 'DentAgenda', repoUrl: 'https://github.com/iagokoch/DentAgenda', screen: 'agenda' },
+  { id: 'monitoolring', name: 'Monitoolring', repoUrl: 'https://github.com/iagokoch/horangotango', screen: 'mono' },
+  {
+    id: 'email-to-ticket',
+    name: 'email-to-ticket',
+    repoUrl: 'https://github.com/iagokoch/email-to-ticket-automation',
+    screen: 'mail',
+  },
+  { id: 'axevoke', name: 'Axevoke', repoUrl: 'https://github.com/axevoke/axevoke', screen: 'axe' },
+  {
+    id: 'petfriend-connect',
+    name: 'PetFriend Connect',
+    repoUrl: 'https://github.com/joaofsdev/PetFriendConnect',
+    screen: 'pet',
+  },
+  { id: 'dashboard-tiflux', name: 'Dashboard TIflux', screen: 'tif' },
 ]

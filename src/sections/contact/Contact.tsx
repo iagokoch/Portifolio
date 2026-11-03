@@ -15,7 +15,7 @@ export function Contact() {
   const c = t.contact
 
   return (
-    <Section id="contato" panel>
+    <Section id="contato">
       <SectionHeader
         eyebrow={c.eyebrow}
         title={c.title}

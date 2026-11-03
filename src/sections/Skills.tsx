@@ -30,7 +30,7 @@ export function Skills() {
   const { t } = useLang()
 
   return (
-    <Section id="skills" panel>
+    <Section id="skills">
       <SectionHeader
         eyebrow={t.skills.eyebrow}
         title={t.skills.title}

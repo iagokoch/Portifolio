@@ -96,6 +96,19 @@
   animation-delay: var(--d, 0s);
 }
 
+/* Entrada de conteúdo ao rolar (o componente Reveal marca `data-in` quando aparece) */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out);
+  &[data-in] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Títulos de seção e do hero: variante condensada, caixa alta */
 @utility display {
   font-weight: 800;
@@ -150,6 +163,12 @@
 @media (prefers-reduced-motion: reduce) {
   .fade-up {
     animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 
