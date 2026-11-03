@@ -69,7 +69,7 @@ export function Heatmap() {
   }
 
   return (
-    <Section>
+    <Section id="atividade">
       <SectionHeader
         eyebrow={h.eyebrow}
         title={h.title}

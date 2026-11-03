@@ -1,59 +1,84 @@
-import { useState } from 'react'
-import { Critters } from '../../components/anim/Critters'
+import { useRef, type CSSProperties, type MouseEvent } from 'react'
 import { Button } from '../../components/ui/Button'
 import { Container } from '../../components/ui/Container'
-import { Eyebrow } from '../../components/ui/Eyebrow'
-import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { prefersReducedMotion } from '../../hooks/useReducedMotion'
 import { useLang } from '../../i18n/useLang'
-import { Cartridge } from './Cartridge'
+import { Playground } from './Playground'
 
-// Os atributos data-crit marcam as linhas que os bichinhos "digitam" na animação do hero
-export function Hero({ active }: { active: boolean }) {
+/** Atraso da animação de entrada (lido pela utility `fade-up`) */
+const delay = (seconds: string) => ({ '--d': seconds }) as CSSProperties
+
+export function Hero() {
   const { t } = useLang()
-  const reduced = useReducedMotion()
-  const [flown, setFlown] = useState(false)
-  const revealed = reduced || flown
   const h = t.hero
+  const titleRef = useRef<HTMLHeadingElement>(null)
+  const frame = useRef(0)
+
+  // Paralaxe do título: o deslocamento da extrusão varia ±2px conforme o mouse sobre o hero.
+  // Os valores vão para variáveis CSS (--ox/--oy) em no máximo um quadro por vez.
+  const onMouseMove = (e: MouseEvent<HTMLElement>) => {
+    if (prefersReducedMotion()) return
+    const r = e.currentTarget.getBoundingClientRect()
+    const nx = ((e.clientX - r.left) / r.width) * 2 - 1
+    const ny = ((e.clientY - r.top) / r.height) * 2 - 1
+    cancelAnimationFrame(frame.current)
+    frame.current = requestAnimationFrame(() => {
+      titleRef.current?.style.setProperty('--ox', `${(2 - nx * 2).toFixed(1)}px`)
+      titleRef.current?.style.setProperty('--oy', `${(2 - ny * 2).toFixed(1)}px`)
+    })
+  }
+
+  const onMouseLeave = () => {
+    cancelAnimationFrame(frame.current)
+    titleRef.current?.style.removeProperty('--ox')
+    titleRef.current?.style.removeProperty('--oy')
+  }
 
   return (
-    <section id="top" className="overflow-x-clip border-b border-border">
-      <Container className="flex flex-wrap items-center gap-14 py-[clamp(56px,7.8cqw,112px)]">
-        <div className="flex min-w-0 flex-[1_1_460px] flex-col items-start gap-[26px]">
-          <div data-crit="0">
-            <Eyebrow>{h.eyebrow}</Eyebrow>
-          </div>
-          <h1 className="m-0 flex flex-col font-pixel text-[clamp(60px,7.4cqw,108px)] leading-[0.88] font-normal tracking-[-0.02em]">
-            <span data-crit="1">{h.first}</span>
-            <span data-crit="2" className="text-accent">
+    <section id="top" onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}>
+      <Container className="pt-10 @min-[820px]:pt-[clamp(48px,6cqw,84px)]">
+        <div
+          style={delay('.05s')}
+          className="fade-up flex flex-wrap gap-x-3.5 gap-y-1.5 font-mono text-[12.5px] text-ink-2"
+        >
+          <span className="text-ink">
+            {h.meta.request} <b>{h.meta.status}</b>
+          </span>
+          <span>{h.meta.place}</span>
+        </div>
+
+        <div className="mt-5 grid items-center gap-x-14 gap-y-8 @min-[820px]:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+          <h1
+            ref={titleRef}
+            style={delay('.15s')}
+            className="fade-up display m-0 text-[clamp(92px,34cqw,150px)] leading-[0.8] tracking-[-0.02em] @min-[820px]:text-[clamp(100px,17cqw,240px)]"
+          >
+            <span className="title-depth block text-ink">{h.first}</span>
+            <span className="title-depth block bg-[linear-gradient(180deg,#e6e9ed_0%,#9aa1ac_100%)] bg-clip-text pb-[0.04em] text-transparent">
               {h.last}
             </span>
           </h1>
-          <div data-crit="3">
-            <p className="m-0 max-w-[30ch] text-[clamp(18px,1.55cqw,22px)] leading-[1.4] font-medium text-pretty">{h.role}</p>
-          </div>
-          <div data-crit="4">
-            <p className="m-0 max-w-[44ch] text-[17px] text-muted text-pretty">{h.focus}</p>
-          </div>
-          <div data-crit="5" className="pb-1.5">
-            <Button href="#projetos" size="lg" className="gap-3">
-              {h.cta} <span aria-hidden="true">↓</span>
-            </Button>
+
+          <div style={delay('.28s')} className="fade-up flex max-w-[520px] flex-col gap-[26px]">
+            <p className="m-0 text-[19px] leading-[1.5] text-ink">
+              {h.intro.before}
+              <b>{h.intro.backend}</b>
+              {h.intro.middle}
+              <b>{h.intro.frontend}</b>
+              {h.intro.after}
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Button href="#projetos">{h.cta}</Button>
+              <Button href="#contato" variant="secondary">
+                {h.contact}
+              </Button>
+            </div>
           </div>
         </div>
 
-        {/* a coluna da direita entra depois que os bichinhos terminam de montar o texto */}
-        <div
-          className={`flex min-w-0 flex-[1_1_380px] justify-end transition-[opacity,transform] duration-[350ms] ease-[steps(5)] ${
-            revealed ? 'opacity-100' : 'translate-y-2.5 opacity-0'
-          }`}
-        >
-          <Cartridge />
+        <div style={delay('.4s')} className="fade-up mt-11">
+          <Playground />
         </div>
-      </Container>
-
-      {/* faixa de chão onde os bichinhos andam */}
-      <Container className="-mt-6 pb-10">
-        <Critters active={active} onFlown={() => setFlown(true)} />
       </Container>
     </section>
   )

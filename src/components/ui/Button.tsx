@@ -1,26 +1,28 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react'
 
-type Variant = 'primary' | 'secondary' | 'outline-accent'
+// `subtle` = botão do header (prata); `outline-accent` é um apelido temporário de `secondary` (v4)
+type Variant = 'primary' | 'secondary' | 'subtle' | 'outline-accent'
+// `cta` e `lg` são apelidos temporários de `md` (v4)
 type Size = 'xs' | 'sm' | 'md' | 'cta' | 'lg'
 
-// Hover: o botão afunda 2px e a sombra encolhe 2px. Cada string é literal para o Tailwind enxergar.
+// Cada string é literal para o Tailwind enxergar
 const SIZES: Record<Size, string> = {
-  xs: 'px-3 py-[9px] text-xs shadow-px-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0_var(--shadow)]',
-  sm: 'px-3.5 py-2.5 text-xs shadow-px-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0_var(--shadow)]',
-  md: 'px-[18px] py-[13px] text-sm shadow-px-md hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_var(--shadow)]',
-  // md com sombra de 5px (WhatsApp)
-  cta: 'px-[18px] py-[13px] text-sm shadow-px hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[3px_3px_0_var(--shadow)]',
-  lg: 'px-[22px] py-[15px] text-[15px] shadow-px hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[3px_3px_0_var(--shadow)]',
+  xs: 'px-3.5 py-2 font-mono text-[13px] font-normal',
+  sm: 'px-3.5 py-2 text-[13px]',
+  md: 'px-5 py-[11px] text-[15px]',
+  cta: 'px-5 py-[11px] text-[15px]',
+  lg: 'px-5 py-[11px] text-[15px]',
 }
 
 const VARIANTS: Record<Variant, string> = {
-  primary: 'bg-accent text-on-accent border-shadow',
-  secondary: 'bg-transparent text-fg border-border-input hover:border-fg',
-  'outline-accent': 'bg-transparent text-fg border-border-input hover:border-accent hover:text-accent',
+  primary: 'border-transparent bg-ink text-bg hover:bg-white',
+  secondary: 'border-[rgba(240,237,231,.35)] bg-transparent text-ink hover:border-ink',
+  subtle: 'border-transparent bg-ink-2 text-bg hover:bg-ink',
+  'outline-accent': 'border-[rgba(240,237,231,.35)] bg-transparent text-ink hover:border-ink',
 }
 
 const BASE =
-  'inline-flex cursor-pointer items-center gap-2.5 rounded-px border font-pixel no-underline transition-[transform,box-shadow,border-color,color] duration-100'
+  'inline-flex cursor-pointer items-center justify-center gap-2 rounded-btn border font-sans font-semibold no-underline transition-[transform,background-color,border-color,color] duration-[250ms] ease-out hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0'
 
 interface CommonProps {
   variant?: Variant
