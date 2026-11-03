@@ -19,7 +19,7 @@ public record ContactRequest(
         @NotBlank(message = "O campo mensagem não pode ser vazio!")
         String message,
 
-        @Size(max = 0)
+        @Size(max = 255)
         String website
 
 ) {}

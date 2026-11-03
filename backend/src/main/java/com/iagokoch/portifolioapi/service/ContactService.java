@@ -7,21 +7,26 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class ContactService{
+public class ContactService {
     private final ContactMessageRepository repository;
 
-    public ContactService(ContactMessageRepository repository){
-        this.repository = repository; // construtor
+    public ContactService(ContactMessageRepository repository) {
+        this.repository = repository;
     }
 
-    //metodo register
-
     @Transactional
-    public void register(ContactRequest request){
+    public void register(ContactRequest request) {
+        if (isHoneypotFilled(request)) {
+            return;
+        }
 
         ContactMessage contactMessage = new ContactMessage(request.name(), request.email(), request.message());
         repository.save(contactMessage);
 
+    }
 
+    private boolean isHoneypotFilled(ContactRequest request) {
+        return request.website() != null && !request.website().isBlank();
     }
 }
+

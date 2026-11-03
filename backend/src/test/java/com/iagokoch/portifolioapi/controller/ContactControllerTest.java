@@ -106,7 +106,7 @@ class ContactControllerTest {
 
 
     @Test
-    void shouldRejectContactWhenHoneypotIsFilled() throws Exception {
+    void shouldAcceptSilentlyWhenHoneypotIsFilled() throws Exception {
         mockMvc.perform(post("/api/contact")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
@@ -117,7 +117,6 @@ class ContactControllerTest {
                                     "website": "https/example.com"
                                 }
                                 """))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.errors.website").exists());
+                .andExpect(status().isCreated());
     }
 }
