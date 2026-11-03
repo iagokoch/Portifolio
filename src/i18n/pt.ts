@@ -6,18 +6,6 @@ export const pt = {
     title: 'Iago Koch · Estudante de Engenharia de Software',
     description: 'Portfólio de Iago Koch: APIs e produtos web com Python, Java, Node.js, React e bancos relacionais.',
   },
-  intro: {
-    system: 'IK-SYSTEM · boot',
-    skip: 'Pular',
-    skipKey: 'Esc',
-    title: 'IK://BOOT',
-    version: 'v26.10 · portfólio de Iago Koch',
-    lines: ['iniciando sistema', 'carregando perfil: iago_koch', 'módulos: python · java · node.js · react · sql', 'montando /projetos'],
-    ready: 'pronto para jogar',
-    loading: 'carregando',
-    eta: '~1,2 s',
-    hint: 'pressione qualquer tecla para continuar',
-  },
   nav: {
     projects: 'Projetos',
     about: 'Sobre',

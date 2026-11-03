@@ -6,18 +6,6 @@ export const en: Dict = {
     title: 'Iago Koch · Software Engineering Student',
     description: 'Iago Koch’s portfolio: APIs and web products built with Python, Java, Node.js, React and relational databases.',
   },
-  intro: {
-    system: 'IK-SYSTEM · boot',
-    skip: 'Skip',
-    skipKey: 'Esc',
-    title: 'IK://BOOT',
-    version: 'v26.10 · Iago Koch’s portfolio',
-    lines: ['booting system', 'loading profile: iago_koch', 'modules: python · java · node.js · react · sql', 'mounting /projects'],
-    ready: 'ready to play',
-    loading: 'loading',
-    eta: '~1.2 s',
-    hint: 'press any key to continue',
-  },
   nav: {
     projects: 'Projects',
     about: 'About',
