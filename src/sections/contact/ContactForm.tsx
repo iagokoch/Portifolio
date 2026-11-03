@@ -1,16 +1,13 @@
 import { useState, type FormEvent } from 'react'
 import { Button } from '../../components/ui/Button'
-import { PixelGrid } from '../../components/ui/PixelGrid'
+import { Pet } from '../../components/ui/Pet'
 import { useLang } from '../../i18n/useLang'
 import { sendContact } from '../../lib/sendContact'
-import { CHECK, cells, ICON_PALETTE } from '../../lib/pixels'
 
-const CHECK_CELLS = cells(CHECK, ICON_PALETTE)
-const LABEL = 'flex flex-col gap-[7px]'
-const LABEL_TEXT = 'font-mono text-xs text-muted'
-const FIELD =
-  'rounded-px border border-border-input bg-panel px-3 py-[11px] font-[inherit] text-fg outline-none focus:border-accent focus:shadow-[3px_3px_0_var(--accent)]'
-const FIELD_ERROR = 'text-xs text-danger'
+const LABEL = 'flex flex-col gap-1.5'
+const LABEL_TEXT = 'font-mono text-xs text-ink-2'
+const FIELD = 'rounded-btn border border-line-strong bg-bg px-3 py-[11px] font-sans text-base text-ink'
+const FIELD_ERROR = 'text-xs text-error'
 
 export function ContactForm() {
   const { t } = useLang()
@@ -43,23 +40,18 @@ export function ContactForm() {
   }
 
   return (
-    <div
-      data-load="c2"
-      className="flex min-w-0 flex-[1_1_340px] flex-col rounded-px border border-border-input bg-bg shadow-px"
-    >
-      <div className="flex justify-between border-b border-border px-4 py-2.5">
-        <span className="font-pixel text-xs">{f.title}</span>
-        <span className="font-mono text-xs text-muted">{f.file}</span>
+    <div className="flex min-w-0 flex-1 flex-col rounded-xl border border-[rgba(240,237,231,.14)] bg-card">
+      <div className="flex justify-between border-b border-line px-4 py-2.5 font-mono text-xs text-ink-2">
+        <span>{f.title}</span>
+        <span>{f.file}</span>
       </div>
 
       {done ? (
-        <div className="flex flex-1 flex-col items-start justify-center gap-4 px-[22px] py-8" role="status">
-          <div className="flex size-14 items-center justify-center border border-accent bg-panel-2 shadow-px-md">
-            <PixelGrid cells={CHECK_CELLS} cols={8} size={32} />
-          </div>
-          <span className="font-pixel text-[22px]">{f.doneTitle}</span>
-          <span className="max-w-[36ch] text-muted">{f.doneText}</span>
-          <Button variant="secondary" size="sm" onClick={() => setDone(false)}>
+        <div className="flex flex-1 flex-col items-start justify-center gap-3 px-6 py-10" role="status">
+          <Pet color="blue" size={50} />
+          <b className="text-[22px]">{f.doneTitle}</b>
+          <span className="max-w-[36ch] text-ink-2">{f.doneText}</span>
+          <Button variant="secondary" size="xs" onClick={() => setDone(false)}>
             {f.again}
           </Button>
         </div>
@@ -85,15 +77,15 @@ export function ContactForm() {
           </label>
           <label className={`${LABEL} flex-1`}>
             <span className={LABEL_TEXT}>{f.message}</span>
-            <textarea name="message" required rows={4} className={`${FIELD} flex-1 resize-y`} />
+            <textarea name="message" required rows={4} className={`${FIELD} min-h-[100px] flex-1 resize-y`} />
             {fieldErrors.message && <span className={FIELD_ERROR}>{fieldErrors.message}</span>}
           </label>
           {errorMessage && (
-            <p role="alert" className="text-sm text-danger">
+            <p role="alert" className="text-sm text-error">
               {errorMessage}
             </p>
           )}
-          <Button type="submit" size="md" className="self-start" disabled={isSending}>
+          <Button type="submit" className="self-start" disabled={isSending}>
             {isSending ? f.sending : f.submit}
           </Button>
         </form>

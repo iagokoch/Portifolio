@@ -65,18 +65,8 @@
   }
 }
 
-@keyframes ikpulse {
-  0% {
-    box-shadow: 0 0 0 0 var(--accent);
-  }
-  100% {
-    box-shadow: 0 0 0 7px transparent;
-  }
-}
-
 @theme inline {
   --animate-blink: ikblink 1s steps(1) infinite;
-  --animate-pulse-px: ikpulse 1.6s steps(6) infinite;
 }
 
 @keyframes ikup {
@@ -169,6 +159,11 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  /* cursor do terminal fica fixo, sem piscar */
+  .animate-blink {
+    animation: none;
   }
 }
 

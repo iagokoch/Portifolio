@@ -210,10 +210,9 @@ export const en: Dict = {
     more: 'more',
   },
   contact: {
-    eyebrow: '05 // contact',
-    title: 'Let’s start a conversation.',
-    emailLabel: 'e-mail',
-    phoneLabel: 'tel',
+    request: 'POST /contact',
+    status: '201 Created',
+    title: { before: 'Let’s', mark: 'talk.' },
     whatsapp: 'Message on WhatsApp',
     whatsappMessage: 'Hi, Iago! I saw your portfolio and would like to talk.',
     terminal: {
@@ -256,16 +255,6 @@ export const en: Dict = {
       errorGeneric: 'Your message could not be sent. Please try again or reach me on WhatsApp.',
       errorNetwork: 'Could not reach the server. Check your connection and try again.',
     },
-  },
-  crew: {
-    wait: 'Wait!',
-    done: 'Done!',
-    oops: 'Oops!',
-    projects: 'Everyone, load the projects!',
-    about: 'Bring the player sheet!',
-    skills: 'Equip the loadout!',
-    heatmap: 'Stack the blocks!',
-    contact: 'Power up the terminal!',
   },
   footer: {
     credit: 'Designed and developed by Iago Koch.',

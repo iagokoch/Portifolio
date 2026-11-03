@@ -1,14 +1,11 @@
-import { Crew } from '../../components/anim/Crew'
 import { Button } from '../../components/ui/Button'
+import { Reveal } from '../../components/ui/Reveal'
 import { Section } from '../../components/ui/Section'
-import { SectionHeader } from '../../components/ui/SectionHeader'
+import { SectionTitle } from '../../components/ui/SectionTitle'
 import { config, whatsappLink } from '../../config'
 import { useLang } from '../../i18n/useLang'
 import { ContactForm } from './ContactForm'
 import { Terminal } from './Terminal'
-
-// Glifo de balão de conversa em 3×3 pixels (1 = pintado)
-const CHAT_GLYPH = [1, 1, 1, 1, 1, 0, 1, 0, 0]
 
 export function Contact() {
   const { t } = useLang()
@@ -16,40 +13,29 @@ export function Contact() {
 
   return (
     <Section id="contato">
-      <SectionHeader
-        eyebrow={c.eyebrow}
-        title={c.title}
-        balance
-        className="mb-10"
-        aside={
-          <>
-            <div className="flex flex-wrap gap-x-6 gap-y-2 font-mono text-[13px]">
-              <span>
-                <span className="text-muted">{c.emailLabel} </span>
-                <a href={`mailto:${config.email}`} className="text-fg no-underline hover:text-accent">
-                  {config.email}
-                </a>
-              </span>
-              <span>
-                <span className="text-muted">{c.phoneLabel} </span>
-                {config.phone}
-              </span>
-            </div>
-            <Button href={whatsappLink(c.whatsappMessage)} target="_blank" rel="noopener noreferrer" size="cta" className="gap-3">
-              <span aria-hidden="true" className="grid grid-cols-[repeat(3,4px)] gap-0.5">
-                {CHAT_GLYPH.map((on, i) => (
-                  <span key={i} className={`size-1 ${on ? 'bg-on-accent' : ''}`} />
-                ))}
-              </span>
-              {c.whatsapp}
-            </Button>
-          </>
-        }
-      />
-      <Crew message={t.crew.contact} wait className="-mt-2 mb-7" />
-      <div className="flex flex-wrap items-stretch gap-7">
-        <Terminal />
-        <ContactForm />
+      <Reveal className="mb-11 flex flex-wrap items-end justify-between gap-x-10 gap-y-5">
+        <SectionTitle request={c.request} status={c.status} title={c.title} />
+        <div className="flex flex-col items-start gap-3 font-mono text-[13px] text-ink-2">
+          <span>
+            <a href={`mailto:${config.email}`} className="text-ink-2 no-underline transition-colors hover:text-ink">
+              {config.email}
+            </a>
+            {' · '}
+            {config.phone}
+          </span>
+          <Button href={whatsappLink(c.whatsappMessage)} target="_blank" rel="noopener noreferrer">
+            {c.whatsapp} ↗
+          </Button>
+        </div>
+      </Reveal>
+
+      <div className="grid grid-cols-1 gap-6 @min-[820px]:grid-cols-2">
+        <Reveal className="flex">
+          <Terminal />
+        </Reveal>
+        <Reveal className="flex">
+          <ContactForm />
+        </Reveal>
       </div>
     </Section>
   )

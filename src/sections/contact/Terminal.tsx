@@ -9,13 +9,12 @@ const WELCOME: Line = { k: 'welcome', t: '' }
 
 const CHIPS = ['help', 'about', 'projects', 'skills', 'contact', 'github', 'clear', 'sudo hire iago']
 
-// O terminal é sempre escuro, em qualquer tema: cores fixas, fora dos tokens
 const COLOR: Record<Line['k'], string> = {
-  cmd: 'text-[#f1f1f5]',
-  out: 'text-[#a3a6b5]',
-  ok: 'text-[#b9a6ff]',
-  err: 'text-[#ff6b5f]',
-  welcome: 'text-[#b9a6ff]',
+  cmd: 'text-ink',
+  out: 'text-ink-2',
+  ok: 'text-ink',
+  err: 'text-error',
+  welcome: 'text-ink-2',
 }
 
 export function Terminal() {
@@ -55,30 +54,29 @@ export function Terminal() {
   }
 
   return (
-    <div
-      data-load="c1"
-      className="flex min-w-0 flex-[1.3_1_500px] flex-col rounded-px border border-[#3a3e4d] bg-[#08090c] font-mono text-[#f1f1f5] shadow-px"
-    >
-      <div className="flex items-center gap-1.5 border-b border-[#2c2f3b] bg-[#14151b] px-3.5 py-2.5 text-xs text-[#a3a6b5]">
-        <span className="size-[9px] bg-[#3a3e4d]" />
-        <span className="size-[9px] bg-[#3a3e4d]" />
-        <span className="size-[9px] bg-[#ff9f1c]" />
-        <span className="ml-2.5">{term.title}</span>
-        <span className="ml-auto">{term.size}</span>
+    <div className="flex min-w-0 flex-1 flex-col overflow-hidden rounded-xl border border-[rgba(240,237,231,.14)] bg-[#0a0c10] font-mono text-ink-2">
+      <div className="flex justify-between border-b border-line bg-card px-4 py-2.5 text-xs">
+        <span>{term.title}</span>
+        <span>{term.size}</span>
       </div>
 
-      <div className="relative min-h-80 flex-1" onClick={() => inputRef.current?.focus({ preventScroll: true })}>
-        <div ref={scrollRef} role="log" aria-live="polite" className="absolute inset-0 overflow-auto p-[18px] text-sm leading-[1.7]">
+      <div className="relative min-h-[300px] flex-1 cursor-text" onClick={() => inputRef.current?.focus({ preventScroll: true })}>
+        <div
+          ref={scrollRef}
+          role="log"
+          aria-live="polite"
+          className="absolute inset-0 overflow-auto px-[18px] py-4 text-sm leading-[1.7]"
+        >
           {lines.map((l, i) => (
             <div key={i} className="break-words whitespace-pre-wrap">
-              {l.k === 'cmd' && <span className="text-[#ff9f1c]">{term.prompt}</span>}
+              {l.k === 'cmd' && <span className="text-ink">{term.prompt}</span>}
               <span className={COLOR[l.k]}>{l.k === 'welcome' ? term.welcome : l.t}</span>
             </div>
           ))}
           <label className="relative flex items-center whitespace-pre">
-            <span className="text-[#ff9f1c]">{term.prompt}</span>
-            <span>{input}</span>
-            <span aria-hidden="true" className="h-[17px] w-[9px] animate-blink bg-[#ff9f1c]" />
+            <span className="text-ink">{term.prompt}</span>
+            <span className="text-ink">{input}</span>
+            <span aria-hidden="true" className="h-[17px] w-[9px] animate-blink bg-glacial" />
             <input
               ref={inputRef}
               value={input}
@@ -97,29 +95,19 @@ export function Terminal() {
             />
           </label>
         </div>
-        {/* scanlines */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(180deg,rgba(255,255,255,.028)_0_1px,transparent_1px_3px)]"
-        />
       </div>
 
-      <div className="flex flex-wrap gap-2 border-t border-[#2c2f3b] px-3.5 py-3">
-        {CHIPS.map((c) => {
-          const hire = c === 'sudo hire iago'
-          return (
-            <button
-              key={c}
-              type="button"
-              onClick={() => run(c)}
-              className={`cursor-pointer rounded-px border bg-transparent px-2.5 py-[5px] font-mono text-[12.5px] border-[#3a3e4d] hover:border-[#ff9f1c] hover:text-[#ff9f1c] ${
-                hire ? 'border-dashed text-[#ff9f1c]' : 'text-[#f1f1f5]'
-              }`}
-            >
-              {c}
-            </button>
-          )
-        })}
+      <div className="flex flex-wrap gap-2 border-t border-line px-3.5 py-3">
+        {CHIPS.map((c) => (
+          <button
+            key={c}
+            type="button"
+            onClick={() => run(c)}
+            className="cursor-pointer rounded-tag border border-line-strong bg-transparent px-2.5 py-1 font-mono text-xs text-ink-2 transition-colors hover:border-ink hover:text-ink"
+          >
+            {c}
+          </button>
+        ))}
       </div>
     </div>
   )

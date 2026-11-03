@@ -210,10 +210,9 @@ export const pt = {
     more: 'mais',
   },
   contact: {
-    eyebrow: '05 // contato',
-    title: 'Vamos abrir uma conversa.',
-    emailLabel: 'e-mail',
-    phoneLabel: 'tel',
+    request: 'POST /contato',
+    status: '201 Created',
+    title: { before: 'Vamos', mark: 'conversar.' },
     whatsapp: 'Chamar no WhatsApp',
     whatsappMessage: 'Olá, Iago! Vi seu portfólio e gostaria de conversar.',
     terminal: {
@@ -256,16 +255,6 @@ export const pt = {
       errorGeneric: 'Não foi possível enviar sua mensagem. Tente novamente ou fale comigo pelo WhatsApp.',
       errorNetwork: 'Sem conexão com o servidor. Verifique sua internet e tente novamente.',
     },
-  },
-  crew: {
-    wait: 'Espere!',
-    done: 'Pronto!',
-    oops: 'Ops!',
-    projects: 'Pessoal, carreguem os projetos!',
-    about: 'Tragam a ficha do jogador!',
-    skills: 'Equipem o loadout!',
-    heatmap: 'Empilhem os blocos!',
-    contact: 'Liguem o terminal!',
   },
   footer: {
     credit: 'Projetado e desenvolvido por Iago Koch.',
