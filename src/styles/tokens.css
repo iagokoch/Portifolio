@@ -2,7 +2,6 @@
 :root {
   color-scheme: dark;
 
-  /* design v5 */
   --bg: #0e1014;
   --surface: #1e2228;
   --surface-card: #14171c;
@@ -12,6 +11,7 @@
   --glacial: #80c7e8;
   --highlight: #3a3f48;
   --line: rgba(240, 237, 231, 0.1);
+  --line-soft: rgba(240, 237, 231, 0.14);
   --line-strong: rgba(240, 237, 231, 0.22);
   --error: #f2788c;
   --sel: #80c7e8;
@@ -29,18 +29,4 @@
   --pet-pink: #f2788c;
   --pet-purple: #9b8cf2;
   --pet-blue: #80c7e8;
-
-  /* Apelidos temporários: os componentes da v4 ainda usam estes nomes.
-     Somem quando a última etapa remover o código antigo. */
-  --panel: var(--surface-card);
-  --panel-2: var(--surface);
-  --border: rgba(240, 237, 231, 0.14);
-  --border-input: var(--line-strong);
-  --fg: var(--text);
-  --muted: var(--text-2);
-  --accent: var(--text);
-  --on-accent: var(--bg);
-  --soft: var(--text-2);
-  --danger: var(--error);
-  --shadow: transparent;
 }

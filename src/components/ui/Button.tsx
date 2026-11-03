@@ -1,25 +1,20 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react'
 import { Link } from 'react-router'
 
-// `subtle` = botão do header (prata); `outline-accent` é um apelido temporário de `secondary` (v4)
-type Variant = 'primary' | 'secondary' | 'subtle' | 'outline-accent'
-// `cta` e `lg` são apelidos temporários de `md` (v4)
-type Size = 'xs' | 'sm' | 'md' | 'cta' | 'lg'
+// `subtle` = botão do header (prata)
+type Variant = 'primary' | 'secondary' | 'subtle'
+type Size = 'xs' | 'md'
 
 // Cada string é literal para o Tailwind enxergar
 const SIZES: Record<Size, string> = {
   xs: 'px-3.5 py-2 font-mono text-[13px] font-normal',
-  sm: 'px-3.5 py-2 text-[13px]',
   md: 'px-5 py-[11px] text-[15px]',
-  cta: 'px-5 py-[11px] text-[15px]',
-  lg: 'px-5 py-[11px] text-[15px]',
 }
 
 const VARIANTS: Record<Variant, string> = {
   primary: 'border-transparent bg-ink text-bg hover:bg-white',
   secondary: 'border-[rgba(240,237,231,.35)] bg-transparent text-ink hover:border-ink',
   subtle: 'border-transparent bg-ink-2 text-bg hover:bg-ink',
-  'outline-accent': 'border-[rgba(240,237,231,.35)] bg-transparent text-ink hover:border-ink',
 }
 
 const BASE =

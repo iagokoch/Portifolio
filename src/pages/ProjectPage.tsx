@@ -116,7 +116,7 @@ function ProjectView({ index }: { index: number }) {
                   className={`w-[150px] cursor-pointer overflow-hidden rounded-[10px] border-2 bg-card p-0 text-ink transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-[3px] @min-[820px]:w-[176px] ${
                     on
                       ? 'border-glacial shadow-[0_0_22px_rgba(128,199,232,.28)]'
-                      : 'border-[rgba(240,237,231,.14)] shadow-none'
+                      : 'border-line-soft shadow-none'
                   }`}
                 >
                   <ScaledScreen className="pointer-events-none">
@@ -132,7 +132,7 @@ function ProjectView({ index }: { index: number }) {
         <Reveal className="relative z-[3] mt-[34px]">
           <div className="grid grid-cols-2 gap-3.5 @min-[820px]:grid-cols-4">
             {item.facts.map((f) => (
-              <div key={f.k} className="rounded-xl border border-border bg-card px-[18px] py-4">
+              <div key={f.k} className="rounded-xl border border-line-soft bg-card px-[18px] py-4">
                 <div className="font-mono text-xs text-ink-2">{f.k}</div>
                 <b className="text-[17px]">{f.v}</b>
               </div>
@@ -151,5 +151,9 @@ export function ProjectPage() {
   // slug desconhecido: volta para a lista de projetos
   if (index === -1) return <Navigate to="/#projetos" replace />
   // `key` zera a miniatura selecionada ao trocar de projeto
-  return <ProjectView key={slug} index={index} />
+  return (
+    <main>
+      <ProjectView key={slug} index={index} />
+    </main>
+  )
 }

@@ -40,7 +40,7 @@ export function ContactForm() {
   }
 
   return (
-    <div className="flex min-w-0 flex-1 flex-col rounded-xl border border-[rgba(240,237,231,.14)] bg-card">
+    <div className="flex min-w-0 flex-1 flex-col rounded-xl border border-line-soft bg-card">
       <div className="flex justify-between border-b border-line px-4 py-2.5 font-mono text-xs text-ink-2">
         <span>{f.title}</span>
         <span>{f.file}</span>

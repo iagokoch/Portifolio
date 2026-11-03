@@ -1,36 +1,32 @@
 import { Link } from 'react-router'
-import { Button } from '../components/ui/Button'
 import { Container } from '../components/ui/Container'
-import { IKTile } from '../components/ui/IKTile'
-import { whatsappLink } from '../config'
+import { Pet } from '../components/ui/Pet'
+import { config } from '../config'
 import { useLang } from '../i18n/useLang'
 
 export function Footer() {
   const { t } = useLang()
 
   return (
-    <footer className="bg-bg">
-      <Container className="flex flex-wrap items-center justify-between gap-5 py-8">
-        <div className="flex items-center gap-3">
-          <IKTile size={28} fontSize={11} />
-          <span className="text-sm text-muted">{t.footer.credit}</span>
-        </div>
-        <div className="flex items-center gap-5">
-          <Button
-            href={whatsappLink(t.contact.whatsappMessage)}
+    <footer className="border-t border-line">
+      <Container className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3.5 pt-7 pb-10 text-[15px] text-ink-2">
+        <span className="flex items-center gap-2.5">
+          <Pet color="blue" size={20} />
+          {t.footer.credit}
+        </span>
+        <span className="flex gap-5 font-mono text-[13px]">
+          <a
+            href={config.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            variant="outline-accent"
-            size="xs"
-            className="gap-2"
+            className="text-ink-2 no-underline transition-colors hover:text-ink"
           >
-            <span aria-hidden="true" className="size-2 bg-accent" />
-            {t.footer.whatsapp}
-          </Button>
-          <Link to="/" className="font-mono text-[13px] text-fg no-underline hover:text-accent">
+            {t.footer.github}
+          </a>
+          <Link to="/" className="text-ink-2 no-underline transition-colors hover:text-ink">
             {t.footer.top}
           </Link>
-        </div>
+        </span>
       </Container>
     </footer>
   )

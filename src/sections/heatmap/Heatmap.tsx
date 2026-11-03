@@ -77,7 +77,7 @@ export function Heatmap() {
       </Reveal>
 
       <Reveal>
-        <div className="rounded-[14px] border border-[rgba(240,237,231,.14)] bg-card px-[22px] pt-[22px] pb-4">
+        <div className="rounded-[14px] border border-line-soft bg-card px-[22px] pt-[22px] pb-4">
           <div ref={scrollerRef} className="overflow-x-auto pb-1.5">
             <div className="min-w-max" role="img" aria-label={status}>
               <div className="relative ml-[30px] h-[18px] font-mono text-[11px] text-ink-2">

@@ -258,7 +258,7 @@ export const en: Dict = {
   },
   footer: {
     credit: 'Designed and developed by Iago Koch.',
-    whatsapp: 'WhatsApp ↗',
+    github: 'github ↗',
     top: 'Back to top ↑',
   },
 }

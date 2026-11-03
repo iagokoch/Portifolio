@@ -54,7 +54,7 @@ export function Terminal() {
   }
 
   return (
-    <div className="flex min-w-0 flex-1 flex-col overflow-hidden rounded-xl border border-[rgba(240,237,231,.14)] bg-[#0a0c10] font-mono text-ink-2">
+    <div className="flex min-w-0 flex-1 flex-col overflow-hidden rounded-xl border border-line-soft bg-[#0a0c10] font-mono text-ink-2">
       <div className="flex justify-between border-b border-line bg-card px-4 py-2.5 text-xs">
         <span>{term.title}</span>
         <span>{term.size}</span>

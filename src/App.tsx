@@ -7,7 +7,7 @@ import { Navbar } from './sections/Navbar'
 
 function App() {
   return (
-    <div className="site-root min-h-screen">
+    <div className="site-root min-h-screen overflow-x-clip">
       <ScrollManager />
       <Navbar />
       <Routes>

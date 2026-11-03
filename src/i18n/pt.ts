@@ -258,7 +258,7 @@ export const pt = {
   },
   footer: {
     credit: 'Projetado e desenvolvido por Iago Koch.',
-    whatsapp: 'WhatsApp ↗',
+    github: 'github ↗',
     top: 'Voltar ao topo ↑',
   },
 }

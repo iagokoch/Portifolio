@@ -269,7 +269,7 @@ export function Playground() {
       ref={boxRef}
       role="group"
       aria-label={p.hint}
-      className="relative h-[200px] touch-pan-y overflow-hidden rounded-[12px] border border-[rgba(240,237,231,.14)] bg-bg @min-[820px]:h-[240px]"
+      className="relative h-[200px] touch-pan-y overflow-hidden rounded-[12px] border border-line-soft bg-bg @min-[820px]:h-[240px]"
     >
       <div className="absolute top-3.5 left-[18px] font-mono text-xs text-ink-2">{p.hint}</div>
       {/* em containers estreitos os dois rótulos não cabem lado a lado */}

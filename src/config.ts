@@ -1,4 +1,4 @@
-// Dados de contato e links. Os valores de e-mail, telefone e WhatsApp são placeholders: troque aqui.
+// Dados de contato e links usados no site.
 export const config = {
   email: 'iagon.koch@gmail.com',
   phone: '(47) 99174-7863',
