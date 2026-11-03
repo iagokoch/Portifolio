@@ -198,6 +198,9 @@ export const pt = {
       doneTitle: 'Mensagem enviada!',
       doneText: 'Obrigado pelo contato. Vou responder pelo e-mail informado.',
       again: 'Escrever outra',
+      sending: 'Enviando…',
+      errorGeneric: 'Não foi possível enviar sua mensagem. Tente novamente ou fale comigo pelo WhatsApp.',
+      errorNetwork: 'Sem conexão com o servidor. Verifique sua internet e tente novamente.',
     },
   },
   crew: {

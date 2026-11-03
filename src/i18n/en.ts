@@ -198,6 +198,9 @@ export const en: Dict = {
       doneTitle: 'Message sent!',
       doneText: 'Thanks for reaching out. I’ll reply to the e-mail you provided.',
       again: 'Write another',
+      sending: 'Sending…',
+      errorGeneric: 'Your message could not be sent. Please try again or reach me on WhatsApp.',
+      errorNetwork: 'Could not reach the server. Check your connection and try again.',
     },
   },
   crew: {

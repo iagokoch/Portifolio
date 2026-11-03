@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { Button } from '../../components/ui/Button'
 import { PixelGrid } from '../../components/ui/PixelGrid'
 import { useLang } from '../../i18n/useLang'
+import { sendContact } from '../../lib/sendContact'
 import { CHECK, cells, ICON_PALETTE } from '../../lib/pixels'
 
 const CHECK_CELLS = cells(CHECK, ICON_PALETTE)
@@ -9,16 +10,36 @@ const LABEL = 'flex flex-col gap-[7px]'
 const LABEL_TEXT = 'font-mono text-xs text-muted'
 const FIELD =
   'rounded-px border border-border-input bg-panel px-3 py-[11px] font-[inherit] text-fg outline-none focus:border-accent focus:shadow-[3px_3px_0_var(--accent)]'
+const FIELD_ERROR = 'text-xs text-danger'
 
 export function ContactForm() {
   const { t } = useLang()
   const f = t.contact.form
   const [done, setDone] = useState(false)
+  const [isSending, setIsSending] = useState(false)
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // TODO: enviar para um backend/serviço (Formspree, Resend, API própria). Por enquanto só simula o envio.
-    setDone(true)
+    // Lido antes do await: depois dele o React já limpou e.currentTarget
+    const formData = new FormData(e.currentTarget)
+    setIsSending(true)
+    setErrorMessage(null)
+    setFieldErrors({})
+
+    const result = await sendContact({
+      name: String(formData.get('name')),
+      email: String(formData.get('email')),
+      message: String(formData.get('message')),
+      website: String(formData.get('website') ?? ''),
+    })
+
+    setIsSending(false)
+    if (result.status === 'success') setDone(true)
+    if (result.status === 'invalid') setFieldErrors(result.fieldErrors)
+    if (result.status === 'failure') setErrorMessage(f.errorGeneric)
+    if (result.status === 'network') setErrorMessage(f.errorNetwork)
   }
 
   return (
@@ -44,20 +65,36 @@ export function ContactForm() {
         </div>
       ) : (
         <form onSubmit={onSubmit} className="flex flex-1 flex-col gap-4 p-[22px]">
+          {/* Honeypot: invisível para pessoas, bots preenchem e o backend descarta a mensagem */}
+          <input
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="absolute -left-[9999px]"
+          />
           <label className={LABEL}>
             <span className={LABEL_TEXT}>{f.name}</span>
             <input name="name" required autoComplete="name" className={FIELD} />
+            {fieldErrors.name && <span className={FIELD_ERROR}>{fieldErrors.name}</span>}
           </label>
           <label className={LABEL}>
             <span className={LABEL_TEXT}>{f.email}</span>
             <input name="email" type="email" required autoComplete="email" className={FIELD} />
+            {fieldErrors.email && <span className={FIELD_ERROR}>{fieldErrors.email}</span>}
           </label>
           <label className={`${LABEL} flex-1`}>
             <span className={LABEL_TEXT}>{f.message}</span>
             <textarea name="message" required rows={4} className={`${FIELD} flex-1 resize-y`} />
+            {fieldErrors.message && <span className={FIELD_ERROR}>{fieldErrors.message}</span>}
           </label>
-          <Button type="submit" size="md" className="self-start">
-            {f.submit}
+          {errorMessage && (
+            <p role="alert" className="text-sm text-danger">
+              {errorMessage}
+            </p>
+          )}
+          <Button type="submit" size="md" className="self-start" disabled={isSending}>
+            {isSending ? f.sending : f.submit}
           </Button>
         </form>
       )}
