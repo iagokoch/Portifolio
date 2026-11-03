@@ -41,29 +41,29 @@ class ContactControllerTest {
     @Test
     void shouldReturnErrorWhenContactEmpty() throws Exception {
         mockMvc.perform(post("/api/contact")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("""
-                        {
-                            "name": "",
-                            "email": "",
-                            "message": ""
-                        }
-                        """))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                    "name": "",
+                                    "email": "",
+                                    "message": ""
+                                }
+                                """))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     void shouldReturnErrorWhenEmailInvalid() throws Exception {
         mockMvc.perform(post("/api/contact")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("""
-                        {
-                            "name": "iago teste",
-                            "email": "isso-nao-e-email",
-                            "message": "erro email"
-                            
-                        }
-                        """))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                    "name": "iago teste",
+                                    "email": "isso-nao-e-email",
+                                    "message": "erro email"
+                                
+                                }
+                                """))
                 .andExpect(status().isBadRequest()).andExpect(jsonPath("$.errors.email").value("E-mail inválido."));
 
     }
@@ -71,9 +71,9 @@ class ContactControllerTest {
     @Test
     void shouldAllowCorsForLocalFrontend() throws Exception {
         mockMvc.perform(options("/api/contact")
-                .header("Origin", "http://localhost:5173")
-                .header("Access-Control-Request-Method", "POST")
-                .header("Access-Control-Request-Headers", "Content-Type"))
+                        .header("Origin", "http://localhost:5173")
+                        .header("Access-Control-Request-Method", "POST")
+                        .header("Access-Control-Request-Headers", "Content-Type"))
                 .andExpect(status().isOk())
                 .andExpect(header().string("Access-Control-Allow-Origin", "http://localhost:5173"));
     }
@@ -121,12 +121,12 @@ class ContactControllerTest {
     }
 
     @Test
-    void shouldReturnBadRequestWhenBodyIsMalformed() throws Exception{
+    void shouldReturnBadRequestWhenBodyIsMalformed() throws Exception {
         mockMvc.perform(post("/api/contact")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(
-                        "{nao-e-json"
-                ))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(
+                                "{nao-e-json"
+                        ))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.detail").value("Corpo da requisição inválido"));
     }
