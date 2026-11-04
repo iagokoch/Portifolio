@@ -12,9 +12,12 @@ export type ContactResult =
   | { status: 'failure' }
   | { status: 'network' }
 
+/** Vazio em produção: site e API ficam no mesmo domínio, então a URL é relativa. */
+const apiBaseUrl = import.meta.env.VITE_API_URL ?? ''
+
 export async function sendContact(data: ContactData): Promise<ContactResult> {
   try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
+    const response = await fetch(`${apiBaseUrl}/api/contact`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
