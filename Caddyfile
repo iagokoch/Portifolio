@@ -1,0 +1,17 @@
+{
+	# O TLS termina na Cloudflare; sem isso o Caddy tenta emitir certificado (ACME) e falha.
+	auto_https off
+}
+
+:80 {
+	handle /api/* {
+		reverse_proxy backend:8080
+	}
+
+	# /actuator não casa com /api/*, então cai aqui e nunca chega ao backend.
+	handle {
+		root * /usr/share/caddy
+		try_files {path} /index.html
+		file_server
+	}
+}
