@@ -33,5 +33,16 @@ services:
     ports:
       - "127.0.0.1:8080:8080"
 
+  web:
+    build:
+      context: .
+      args:
+        VITE_API_URL: ${VITE_API_URL:-}
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "127.0.0.1:8081:80"   # só para teste; sai quando o tunnel entrar (item 12)
+
 volumes:
   postgres_data:
