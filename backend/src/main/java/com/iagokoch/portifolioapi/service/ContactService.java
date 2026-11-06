@@ -3,6 +3,8 @@ package com.iagokoch.portifolioapi.service;
 import com.iagokoch.portifolioapi.ContactMessage;
 import com.iagokoch.portifolioapi.ContactMessageRepository;
 import com.iagokoch.portifolioapi.DTO.ContactRequest;
+import com.iagokoch.portifolioapi.notification.ContactRegistered;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,8 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class ContactService {
     private final ContactMessageRepository repository;
 
-    public ContactService(ContactMessageRepository repository) {
+    private final ApplicationEventPublisher eventPublisher;
+
+    public ContactService(ContactMessageRepository repository, ApplicationEventPublisher eventPublisher) {
         this.repository = repository;
+        this.eventPublisher = eventPublisher;
     }
 
     @Transactional
@@ -22,6 +27,15 @@ public class ContactService {
 
         ContactMessage contactMessage = new ContactMessage(request.name(), request.email(), request.message());
         repository.save(contactMessage);
+
+        ContactRegistered event = new ContactRegistered(
+                contactMessage.getId(),
+                contactMessage.getName(),
+                contactMessage.getEmail(),
+                contactMessage.getMessage(),
+                contactMessage.getCreatedAt()
+        );
+        eventPublisher.publishEvent(event);
 
     }
 
