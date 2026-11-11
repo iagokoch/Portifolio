@@ -22,6 +22,45 @@ npm run lint
 
 O formulário de contato chama `${VITE_API_URL}/api/contact`. Copie `.env.example` para `.env` e ajuste. Sem o backend no ar o formulário mostra a mensagem de erro de conexão.
 
+## Notificações de contato
+
+Quando alguém envia o formulário e o banco confirma a gravação, o backend avisa por **Telegram** e por **e-mail**, em segundo plano. O visitante recebe a resposta de sucesso sem esperar os envios, e a falha de um canal não impede o outro. Contatos barrados pelo honeypot ou inválidos não geram aviso.
+
+No e-mail, o remetente é fixo (`CONTACT_EMAIL_FROM`) e o `Reply-To` é o e-mail do visitante: clicar em Responder no Gmail escreve direto para ele.
+
+Se um envio falhar, o backend registra o erro no log (só ID do contato e canal, sem mensagem nem dados pessoais) e tenta avisar por um webhook do **Discord**. Se o próprio Discord falhar, só o log registra, sem alerta em cadeia.
+
+### Variáveis
+
+Todas ficam no `.env` da raiz, que o `docker-compose.yml` repassa ao backend. Nunca coloque esses valores no código ou no git.
+
+| Variável | Obrigatória quando | Segredo |
+|---|---|---|
+| `CONTACT_EMAIL_ENABLED` | nunca (padrão `false`) | não |
+| `CONTACT_EMAIL_FROM` | e-mail ligado | não |
+| `CONTACT_EMAIL_TO` | e-mail ligado | não |
+| `CONTACT_SMTP_USERNAME` | e-mail ligado | não |
+| `CONTACT_SMTP_PASSWORD` | e-mail ligado | **sim** |
+| `CONTACT_TELEGRAM_ENABLED` | nunca (padrão `false`) | não |
+| `CONTACT_TELEGRAM_BOT_TOKEN` | Telegram ligado | **sim** |
+| `CONTACT_TELEGRAM_CHAT_ID` | Telegram ligado | **sim** |
+| `CONTACT_DISCORD_ENABLED` | nunca (padrão `false`) | não |
+| `CONTACT_DISCORD_WEBHOOK_URL` | Discord ligado | **sim** |
+
+### Ativando cada canal
+
+- **E-mail (SMTP do Gmail):** `CONTACT_SMTP_USERNAME` é o endereço Gmail e `CONTACT_SMTP_PASSWORD` é uma [senha de app](https://support.google.com/accounts/answer/185833?hl=pt-BR), não a senha da conta. `CONTACT_EMAIL_FROM` deve ser a própria conta, porque o Gmail reescreve remetentes que não são dela.
+- **Telegram:** crie o bot com o BotFather, envie `/start` para ele a partir da sua conta (sem isso o bot não pode escrever para você) e use o `chat_id` da conversa privada.
+- **Discord:** crie um webhook no canal de alertas e use a URL dele.
+
+Depois de preencher o `.env`, recrie o backend: `docker compose up -d backend`. Com um canal ligado e uma variável faltando, o backend sobe normalmente e o erro aparece no log no primeiro contato, como falha de envio.
+
+### Limites da primeira versão
+
+- Cada canal tem uma fila de 20 envios, 1 worker e tempos limite de 3 s (conexão) e 5 s (resposta). Fila cheia conta como falha e gera alerta.
+- Não há fila persistente nem reenvio: uma queda do servidor com envios pendentes perde os avisos. O contato continua salvo no banco. A recuperação está na issue #2.
+- O alerta cobre erros detectados no envio. Ele não confirma que o e-mail aceito pelo SMTP chegou nem que alguém leu.
+
 ## Onde editar o conteúdo
 
 | O quê | Onde |
