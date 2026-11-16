@@ -10,7 +10,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 @ExtendWith(MockitoExtension.class)
 class NotificationFailureReporterTest {
@@ -62,7 +64,7 @@ class NotificationFailureReporterTest {
 
         doThrow(new RuntimeException("Falha simulada"))
                 .when(alertSender)
-                .send(anyContactId,anyChannel, anyFailure);
+                .send(anyContactId, anyChannel, anyFailure);
 
         assertDoesNotThrow(() ->
                 reporter.report(anyContactId, anyChannel, anyFailure));
