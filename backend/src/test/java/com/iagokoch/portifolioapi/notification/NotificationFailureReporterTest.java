@@ -9,6 +9,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 
@@ -48,4 +50,24 @@ class NotificationFailureReporterTest {
         reporter.report(anyContactId, anyChannel, anyFailure);
         verify(alertSender).send(anyContactId, anyChannel, anyFailure);
     }
+
+    @Test
+    void shouldNotPropagateExceptionWhenAlertSenderFails() throws Exception {
+        var reporter = new NotificationFailureReporter(
+                true,
+                Runnable::run,
+                alertSender
+        );
+
+        Channel anyChannel = Channel.EMAIL;
+        Failure anyFailure = Failure.SEND_FAILED;
+
+        doThrow(new RuntimeException("Falha simulada"))
+                .when(alertSender)
+                .send(anyContactId, anyChannel, anyFailure);
+
+        assertDoesNotThrow(() ->
+                reporter.report(anyContactId, anyChannel, anyFailure));
+    }
+
 }
