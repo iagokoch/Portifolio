@@ -44,9 +44,7 @@ export const en: Dict = {
     back: '← /projects',
     prev: 'Previous project',
     next: 'Next project',
-    screens: { agenda: 'Schedule', pacientes: 'Patients', inicio: 'Home', disponibilidade: 'Availability' },
-    shotsNote: 'Illustrative screens, no real data.',
-    screenNote: 'Illustration with no real data.',
+    lightbox: { close: 'Close', prev: 'Previous image', next: 'Next image' },
     items: {
       dentagenda: {
         short: 'Scheduling for Colzani Odontologia.',
@@ -55,6 +53,8 @@ export const en: Dict = {
         desc: 'Scheduling for Colzani Odontologia. Reception, dentists, admins and patients use the system through their own screens, from registration to the completed appointment.',
         metric: '628 backend tests · 175 front-end',
         long: 'A system for organizing dental schedules and appointments, built in partnership with Colzani Odontologia.',
+        note: 'Real screens from the project, with fictional data.',
+        shots: ['Home', 'Day schedule', 'Appointments', 'New appointment'] as string[],
         features: [
           { t: 'Four roles', s: 'Reception, dentist, admin and patient, each with the screens for their role.' },
           { t: 'Patients', s: 'Registration, address, alerts and appointment history.' },
@@ -69,6 +69,8 @@ export const en: Dict = {
         desc: 'Tool lending for a makerspace. Anyone with an overdue return cannot borrow another tool. I built the backend, with checklist-based returns.',
         metric: 'v2.0 · 15 of 19 requirements in the backend',
         long: 'A tool lending system for a makerspace, built by a team of 6. I took the backend.',
+        note: 'Real screens from the project, with fictional data.',
+        shots: ['Dashboard', 'Tools', 'Register checkout'] as string[],
         features: [
           { t: 'Lending with rules', s: 'Anyone with an overdue return cannot borrow another tool.' },
           { t: 'Checklist returns', s: 'A tool goes back to the shelf only after it is checked.' },
@@ -88,6 +90,8 @@ export const en: Dict = {
         desc: 'Reads "Fechamento de Vaga" emails through Microsoft Graph and opens the ticket in Tiflux. Each module has a single responsibility.',
         metric: 'pytest · CI with GitHub Actions · CodeQL',
         long: 'Automation that reads "Fechamento de Vaga" emails through Microsoft Graph and opens the matching ticket in Tiflux.',
+        note: 'Real pytest output, styled as a terminal.',
+        shots: ['Tests'] as string[],
         features: [
           { t: 'Reading through Graph', s: 'Reads "Fechamento de Vaga" emails through the Microsoft Graph API.' },
           { t: 'Ticket in Tiflux', s: 'Opens the ticket automatically, with the data extracted from the email.' },
@@ -107,6 +111,8 @@ export const en: Dict = {
         desc: 'Multi-company platform for IT and HR, focused on employee onboarding. Per-company data isolation, auditing and LGPD compliance by design.',
         metric: 'data isolated per company · audit with IDs only',
         long: 'Multi-company platform for IT and HR, focused on employee onboarding. In progress.',
+        note: 'Illustration with no real data.',
+        shots: [] as string[],
         features: [
           { t: 'Per-company isolation', s: 'Each company’s data is kept separate by design.' },
           { t: 'Auditing', s: 'Records actions using only IDs, with no personal data.' },
@@ -126,6 +132,8 @@ export const en: Dict = {
         desc: 'Connects pet owners with local sitters: scheduling, bookings protected against double slots and an admin panel.',
         metric: 'transactional bookings · login rate limit',
         long: 'A platform that connects pet owners with local sitters, built as a pair project.',
+        note: 'Real screens from the project, with fictional data.',
+        shots: ['Dashboard', 'Bookings', 'Sitters'] as string[],
         features: [
           { t: 'Scheduling and bookings', s: 'Owners book care with local sitters.' },
           { t: 'No double slots', s: 'Transactional bookings prevent two appointments at the same time.' },
@@ -145,6 +153,8 @@ export const en: Dict = {
         desc: 'Ticket and SLA dashboard for the IT support operation. The repository is private and the dashboard is shown with demo data.',
         metric: 'demo data only',
         long: 'Ticket and SLA dashboard for the IT support operation. The repository is private and the data shown is demo data.',
+        note: 'Illustration with no real data.',
+        shots: [] as string[],
         features: [
           { t: 'Tickets per week', s: 'Ticket volume of the support operation.' },
           { t: 'SLA on time', s: 'Tracking of deadline compliance.' },

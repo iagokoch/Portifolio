@@ -1,10 +1,10 @@
 import { useState, type CSSProperties } from 'react'
 import { Link, Navigate, useParams } from 'react-router'
-import { Screen } from '../components/illustrations/Screen'
-import { DENT_KINDS } from '../components/illustrations/kinds'
+import { ProjectScreen } from '../components/illustrations/ProjectScreen'
 import { Button } from '../components/ui/Button'
 import { Container } from '../components/ui/Container'
 import { Icon } from '../components/ui/Icon'
+import { Lightbox } from '../components/ui/Lightbox'
 import { Reveal } from '../components/ui/Reveal'
 import { ScaledScreen } from '../components/ui/ScaledScreen'
 import { TabletScene } from '../components/ui/TabletScene'
@@ -24,8 +24,9 @@ function ProjectView({ index }: { index: number }) {
   const { t } = useLang()
   const project = projects[index]
   const item = t.projects.items[project.id]
-  const isDent = project.id === 'dentagenda'
   const [selected, setSelected] = useState(0)
+  const [zoomed, setZoomed] = useState(false)
+  const hasShots = project.shots.length > 0
   const { ref: tiltRef, style: tiltStyle, onMove, onLeave } = useTilt(58, -32)
 
   const prev = projects[(index + projects.length - 1) % projects.length]
@@ -81,9 +82,10 @@ function ProjectView({ index }: { index: number }) {
           variant="detail"
           tiltRef={tiltRef}
           tiltStyle={tiltStyle}
+          onOpen={hasShots ? () => setZoomed(true) : undefined}
           className="fade-up relative mt-5 h-[300px] @min-[820px]:absolute @min-[820px]:top-[-30px] @min-[820px]:right-[-4%] @min-[820px]:mt-0 @min-[820px]:h-[520px] @min-[820px]:w-[68%]"
         >
-          <Screen kind={isDent ? DENT_KINDS[selected] : project.screen} />
+          <ProjectScreen project={project} index={selected} />
         </TabletScene>
       </div>
 
@@ -101,36 +103,40 @@ function ProjectView({ index }: { index: number }) {
         ))}
       </Reveal>
 
-      {isDent ? (
-        <Reveal className="relative z-[3] mt-[34px]">
+      <Reveal className="relative z-[3] mt-[34px]">
+        {project.shots.length > 1 && (
           <div className="flex flex-wrap gap-3.5">
-            {DENT_KINDS.map((kind, i) => {
+            {project.shots.map((src, i) => {
               const on = i === selected
               return (
                 <button
-                  key={kind}
+                  key={src}
                   type="button"
-                  aria-pressed={on}
-                  aria-label={t.projects.screens[kind]}
-                  onClick={() => setSelected(i)}
-                  className={`w-[150px] cursor-pointer overflow-hidden rounded-[10px] border-2 bg-card p-0 text-ink transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-[3px] @min-[820px]:w-[176px] ${
+                  aria-haspopup="dialog"
+                  aria-current={on}
+                  aria-label={item.shots[i]}
+                  onClick={() => {
+                    setSelected(i)
+                    setZoomed(true)
+                  }}
+                  className={`w-[150px] cursor-zoom-in overflow-hidden rounded-[10px] border-2 bg-card p-0 text-ink transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-[3px] @min-[820px]:w-[176px] ${
                     on
                       ? 'border-glacial shadow-[0_0_22px_rgba(128,199,232,.28)]'
                       : 'border-line-soft shadow-none'
                   }`}
                 >
                   <ScaledScreen className="pointer-events-none">
-                    <Screen kind={kind} />
+                    <ProjectScreen project={project} index={i} />
                   </ScaledScreen>
                 </button>
               )
             })}
           </div>
-          <div className="mt-3.5 max-w-[640px] font-mono text-xs text-ink-2">{t.projects.shotsNote}</div>
-        </Reveal>
-      ) : (
-        <Reveal className="relative z-[3] mt-[34px]">
-          <div className="grid grid-cols-2 gap-3.5 @min-[820px]:grid-cols-4">
+        )}
+        {item.facts.length > 0 && (
+          <div
+            className={`grid grid-cols-2 gap-3.5 @min-[820px]:grid-cols-4 ${project.shots.length > 1 ? 'mt-5' : ''}`}
+          >
             {item.facts.map((f) => (
               <div key={f.k} className="rounded-xl border border-line-soft bg-card px-[18px] py-4">
                 <div className="font-mono text-xs text-ink-2">{f.k}</div>
@@ -138,8 +144,18 @@ function ProjectView({ index }: { index: number }) {
               </div>
             ))}
           </div>
-          <div className="mt-3.5 max-w-[640px] font-mono text-xs text-ink-2">{t.projects.screenNote}</div>
-        </Reveal>
+        )}
+        <div className="mt-3.5 max-w-[640px] font-mono text-xs text-ink-2">{item.note}</div>
+      </Reveal>
+
+      {zoomed && (
+        <Lightbox
+          shots={project.shots}
+          labels={item.shots}
+          index={selected}
+          onIndex={setSelected}
+          onClose={() => setZoomed(false)}
+        />
       )}
     </Container>
   )
