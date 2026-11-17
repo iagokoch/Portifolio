@@ -1,3 +1,4 @@
+import { useCanonical } from '../hooks/useCanonical'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { useLang } from '../i18n/useLang'
 import { About } from '../sections/about/About'
@@ -11,6 +12,7 @@ import { Skills } from '../sections/Skills'
 export function Home() {
   const { t } = useLang()
   useDocumentTitle(t.meta.title)
+  useCanonical('/')
 
   return (
     <>

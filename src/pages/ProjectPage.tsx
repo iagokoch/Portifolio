@@ -10,6 +10,7 @@ import { ScaledScreen } from '../components/ui/ScaledScreen'
 import { TabletScene } from '../components/ui/TabletScene'
 import { Tag } from '../components/ui/Tag'
 import { projects } from '../data/projects'
+import { useCanonical } from '../hooks/useCanonical'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { useTilt } from '../hooks/useTilt'
 import { useLang } from '../i18n/useLang'
@@ -34,6 +35,7 @@ function ProjectView({ index }: { index: number }) {
   const counter = `${String(index + 1).padStart(2, '0')} / ${String(projects.length).padStart(2, '0')}`
 
   useDocumentTitle(`${project.name} · Iago Koch`)
+  useCanonical(`/projetos/${project.id}`)
 
   return (
     <Container className="pt-[34px] pb-[90px]">
