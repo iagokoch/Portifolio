@@ -3,7 +3,7 @@ import { ok, out } from './types'
 // Fonte da verdade da estrutura: en.ts precisa ter exatamente o mesmo formato
 export const pt = {
   meta: {
-    title: 'Iago Koch · Estudante de Engenharia de Software',
+    title: 'Iago Koch · Desenvolvedor Backend e Full Stack',
     description: 'Portfólio de Iago Koch: APIs e produtos web com Python, Java, Node.js, React e bancos relacionais.',
   },
   nav: {

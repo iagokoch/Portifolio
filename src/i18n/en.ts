@@ -3,7 +3,7 @@ import type { Dict } from './pt'
 
 export const en: Dict = {
   meta: {
-    title: 'Iago Koch · Software Engineering Student',
+    title: 'Iago Koch · Backend and Full Stack Developer',
     description: 'Iago Koch’s portfolio: APIs and web products built with Python, Java, Node.js, React and relational databases.',
   },
   nav: {
