@@ -15,6 +15,8 @@ interface TabletSceneProps {
   tiltStyle: CSSProperties
   /** Posicionamento da cena (altura, lugar na página) */
   className?: string
+  /** Se informado, clicar no tablet chama esta função (abrir o print ampliado) */
+  onOpen?: () => void
   children: ReactNode
 }
 
@@ -22,7 +24,14 @@ interface TabletSceneProps {
  * Cena 3D só com CSS: um tablet inclinado (perspective + rotateX/rotateZ) sobre uma elipse de brilho
  * azul glacial. A tela do tablet recebe `children` (uma tela de 640×400). É decorativa.
  */
-export function TabletScene({ variant = 'card', tiltRef, tiltStyle, className = '', children }: TabletSceneProps) {
+export function TabletScene({
+  variant = 'card',
+  tiltRef,
+  tiltStyle,
+  className = '',
+  onOpen,
+  children,
+}: TabletSceneProps) {
   const detail = variant === 'detail'
   return (
     <div
@@ -43,11 +52,12 @@ export function TabletScene({ variant = 'card', tiltRef, tiltStyle, className = 
       <div
         ref={tiltRef}
         style={tiltStyle}
-        className={
+        onClick={onOpen}
+        className={`${
           detail
             ? 'absolute top-[44%] left-1/2 w-[330px] [transform-style:preserve-3d] @min-[820px]:w-[580px]'
             : 'absolute top-[46%] left-1/2 w-[250px] [transform-style:preserve-3d] @min-[820px]:w-[330px]'
-        }
+        } ${onOpen ? 'cursor-zoom-in' : ''}`}
       >
         <div
           className={

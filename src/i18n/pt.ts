@@ -44,9 +44,7 @@ export const pt = {
     back: '← /projetos',
     prev: 'Projeto anterior',
     next: 'Próximo projeto',
-    screens: { agenda: 'Agenda', pacientes: 'Pacientes', inicio: 'Início', disponibilidade: 'Disponibilidade' },
-    shotsNote: 'Telas ilustrativas, sem dados reais.',
-    screenNote: 'Ilustração sem dados reais.',
+    lightbox: { close: 'Fechar', prev: 'Imagem anterior', next: 'Próxima imagem' },
     items: {
       dentagenda: {
         short: 'Agendamento para a Colzani Odontologia.',
@@ -55,6 +53,8 @@ export const pt = {
         desc: 'Agendamento para a Colzani Odontologia. Recepção, dentista, admin e paciente usam o sistema pelas telas, do cadastro à consulta realizada.',
         metric: '628 testes no backend · 175 no front',
         long: 'Sistema para organização de agendas e consultas odontológicas, desenvolvido em parceria com a Colzani Odontologia.',
+        note: 'Telas reais do projeto, com dados fictícios.',
+        shots: ['Início', 'Agenda do dia', 'Consultas', 'Novo agendamento'] as string[],
         features: [
           { t: 'Quatro papéis', s: 'Recepção, dentista, admin e paciente, cada um com as telas do seu papel.' },
           { t: 'Pacientes', s: 'Cadastro, endereço, alertas e histórico de consultas.' },
@@ -69,6 +69,8 @@ export const pt = {
         desc: 'Empréstimo de ferramentas para makerspace. Quem tem devolução em atraso não retira outra ferramenta. Fiz o backend, com devolução por checklist.',
         metric: 'v2.0 · 15 de 19 requisitos no backend',
         long: 'Sistema de empréstimo de ferramentas para um makerspace, desenvolvido em equipe de 6 pessoas. Fiquei com o backend.',
+        note: 'Telas reais do projeto, com dados fictícios.',
+        shots: ['Painel', 'Ferramentas', 'Registrar retirada'] as string[],
         features: [
           { t: 'Empréstimo com regra', s: 'Quem tem devolução em atraso não retira outra ferramenta.' },
           { t: 'Devolução por checklist', s: 'A ferramenta volta ao acervo depois de conferida.' },
@@ -88,6 +90,8 @@ export const pt = {
         desc: 'Lê e-mails de "Fechamento de Vaga" pelo Microsoft Graph e abre o chamado no Tiflux. Cada módulo tem uma responsabilidade só.',
         metric: 'pytest · CI com GitHub Actions · CodeQL',
         long: 'Automação que lê e-mails de "Fechamento de Vaga" pelo Microsoft Graph e abre o chamado correspondente no Tiflux.',
+        note: 'Saída real do pytest, estilizada como terminal.',
+        shots: ['Testes'] as string[],
         features: [
           { t: 'Leitura pelo Graph', s: 'Lê e-mails de "Fechamento de Vaga" pela API do Microsoft Graph.' },
           { t: 'Chamado no Tiflux', s: 'Abre o chamado automaticamente, com os dados extraídos do e-mail.' },
@@ -107,6 +111,8 @@ export const pt = {
         desc: 'Plataforma multiempresa para TI e RH, com foco na admissão de colaboradores. Isolamento de dados por empresa, auditoria e LGPD desde o desenho.',
         metric: 'dados isolados por empresa · auditoria só com IDs',
         long: 'Plataforma multiempresa para TI e RH, com foco na admissão de colaboradores. Em andamento.',
+        note: 'Ilustração sem dados reais.',
+        shots: [] as string[],
         features: [
           { t: 'Isolamento por empresa', s: 'Os dados de cada empresa ficam separados desde o desenho.' },
           { t: 'Auditoria', s: 'Registra as ações usando apenas IDs, sem dados pessoais.' },
@@ -126,6 +132,8 @@ export const pt = {
         desc: 'Conecta donos de pets a cuidadores locais: agenda, reservas protegidas contra horário duplicado e painel administrativo.',
         metric: 'reservas transacionais · rate limit no login',
         long: 'Plataforma que conecta donos de pets a cuidadores locais, desenvolvida em dupla.',
+        note: 'Telas reais do projeto, com dados fictícios.',
+        shots: ['Painel', 'Reservas', 'Cuidadores'] as string[],
         features: [
           { t: 'Agenda e reservas', s: 'Donos marcam cuidados com cuidadores locais.' },
           { t: 'Sem horário duplicado', s: 'Reservas transacionais evitam dois agendamentos no mesmo horário.' },
@@ -145,6 +153,8 @@ export const pt = {
         desc: 'Painel de chamados e SLA para a operação de suporte de TI. O repositório é privado e o painel é mostrado com dados de demonstração.',
         metric: 'somente dados de demonstração',
         long: 'Painel de chamados e SLA para a operação de suporte de TI. O repositório é privado e os dados mostrados são de demonstração.',
+        note: 'Ilustração sem dados reais.',
+        shots: [] as string[],
         features: [
           { t: 'Chamados por semana', s: 'Volume de chamados da operação de suporte.' },
           { t: 'SLA no prazo', s: 'Acompanhamento do cumprimento dos prazos.' },

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
-import { Screen } from '../../components/illustrations/Screen'
+import { ProjectScreen } from '../../components/illustrations/ProjectScreen'
 import { Button } from '../../components/ui/Button'
 import { Reveal } from '../../components/ui/Reveal'
 import { Section } from '../../components/ui/Section'
@@ -80,7 +80,7 @@ function ProjectRow({ project, index, active, onEnter, onHover, onLeave }: RowPr
           <div className="min-h-0 overflow-hidden">
             <div className="grid grid-cols-1 items-center gap-x-10 gap-y-5 px-[26px] pb-[30px] @min-[820px]:grid-cols-[1.1fr_1fr]">
               <TabletScene tiltRef={tiltRef} tiltStyle={tiltStyle}>
-                <Screen kind={project.screen} />
+                <ProjectScreen project={project} />
               </TabletScene>
               <div className="flex flex-col items-start gap-4">
                 <p className="m-0 max-w-[480px] text-lg text-ink">{item.desc}</p>
