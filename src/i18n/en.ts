@@ -4,7 +4,7 @@ import type { Dict } from './pt'
 export const en: Dict = {
   meta: {
     title: 'Iago Koch · Backend and Full Stack Developer',
-    description: 'Iago Koch’s portfolio: APIs and web products built with Python, Java, Node.js, React and relational databases.',
+    description: 'Iago Koch’s portfolio: backend and full stack developer in Joinville, Brazil. APIs and web products built with Java, Python, Node.js, React and relational databases.',
   },
   nav: {
     top: '/top',

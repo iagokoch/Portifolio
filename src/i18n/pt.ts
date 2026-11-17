@@ -4,7 +4,7 @@ import { ok, out } from './types'
 export const pt = {
   meta: {
     title: 'Iago Koch · Desenvolvedor Backend e Full Stack',
-    description: 'Portfólio de Iago Koch: APIs e produtos web com Python, Java, Node.js, React e bancos relacionais.',
+    description: 'Portfólio de Iago Koch, desenvolvedor backend e full stack em Joinville (SC). APIs e produtos web com Java, Python, Node.js, React e bancos relacionais.',
   },
   nav: {
     top: '/top',
