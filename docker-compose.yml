@@ -52,7 +52,7 @@ services:
     environment:
       TUNNEL_TOKEN: ${TUNNEL_TOKEN}
     depends_on:
-      - web
+      - backend
 
   web:
     build:
