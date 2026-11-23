@@ -27,7 +27,7 @@ export const pt = {
       backend: 'Java/Spring Boot e Python',
       middle: ', interfaces em ',
       frontend: 'React e TypeScript',
-      after: '. Faço deploy com Docker e Cloudflare. Vim da infraestrutura de TI e hoje desenvolvo um sistema para automatizar a criação de usuários na Anagê Imóveis.',
+      after: '. Faço deploy com Docker e Cloudflare. Venho da infraestrutura de TI e hoje desenvolvo um sistema que automatiza a criação de usuários na Anagê Imóveis.',
     },
     cta: 'Ver projetos →',
     contact: 'Falar comigo',
