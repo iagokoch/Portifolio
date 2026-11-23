@@ -3,8 +3,8 @@ import type { Dict } from './pt'
 
 export const en: Dict = {
   meta: {
-    title: 'Iago Koch · Backend and Full Stack Developer',
-    description: 'Iago Koch’s portfolio: backend and full stack developer in Joinville, Brazil. APIs and web products built with Java, Python, Node.js, React and relational databases.',
+    title: 'Iago Koch · Full Stack Developer',
+    description: 'Iago Koch’s portfolio: full stack developer in Joinville, Brazil. APIs and web products built with Java, Python, Node.js, React and relational databases.',
   },
   nav: {
     top: '/top',
@@ -19,15 +19,15 @@ export const en: Dict = {
     home: 'Iago Koch, back to top',
   },
   hero: {
-    meta: { request: 'GET /iago-koch', status: '200 OK', place: 'Joinville, SC · Software Eng.' },
+    meta: { request: 'GET /iago-koch', status: '200 OK', place: 'Joinville, SC · Full Stack Dev' },
     first: 'Iago',
     last: 'Koch',
     intro: {
-      before: 'Software Engineering student and IT support and infrastructure professional. I write backend in ',
-      backend: 'Python and Java',
-      middle: ' and interfaces in ',
-      frontend: 'React',
-      after: '.',
+      before: 'Full Stack Developer studying Software Engineering at Católica SC. I write backend in ',
+      backend: 'Java/Spring Boot and Python',
+      middle: ', interfaces in ',
+      frontend: 'React and TypeScript',
+      after: '. I deploy with Docker and Cloudflare. I started in IT infrastructure and I am now building a system that automates user creation at Anagê Imóveis.',
     },
     cta: 'View projects →',
     contact: 'Get in touch',
@@ -178,6 +178,7 @@ export const en: Dict = {
     facts: [
       { k: 'education', v: 'Software Engineering, expected graduation in 2027 · SESI SENAI technical diploma, 2023' },
       { k: 'today', v: 'IT Infrastructure & Support, including Active Directory for 230+ users' },
+      { k: 'recognition', v: 'Employee of the quarter at Anagê Imóveis, Jan/2026' },
     ],
     timeline: [
       { year: '2023', role: 'Quality Apprentice', org: 'start of the journey' },

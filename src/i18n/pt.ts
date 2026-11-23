@@ -3,8 +3,8 @@ import { ok, out } from './types'
 // Fonte da verdade da estrutura: en.ts precisa ter exatamente o mesmo formato
 export const pt = {
   meta: {
-    title: 'Iago Koch · Desenvolvedor Backend e Full Stack',
-    description: 'Portfólio de Iago Koch, desenvolvedor backend e full stack em Joinville (SC). APIs e produtos web com Java, Python, Node.js, React e bancos relacionais.',
+    title: 'Iago Koch · Desenvolvedor Full Stack',
+    description: 'Portfólio de Iago Koch, desenvolvedor full stack em Joinville (SC). APIs e produtos web com Java, Python, Node.js, React e bancos relacionais.',
   },
   nav: {
     top: '/top',
@@ -19,15 +19,15 @@ export const pt = {
     home: 'Iago Koch, voltar ao topo',
   },
   hero: {
-    meta: { request: 'GET /iago-koch', status: '200 OK', place: 'Joinville, SC · Eng. de Software' },
+    meta: { request: 'GET /iago-koch', status: '200 OK', place: 'Joinville, SC · Dev Full Stack' },
     first: 'Iago',
     last: 'Koch',
     intro: {
-      before: 'Estudante de Engenharia de Software e profissional de suporte e infraestrutura de TI. Escrevo backend em ',
-      backend: 'Python e Java',
-      middle: ' e interfaces em ',
-      frontend: 'React',
-      after: '.',
+      before: 'Desenvolvedor Full Stack cursando Engenharia de Software na Católica SC. Escrevo backend em ',
+      backend: 'Java/Spring Boot e Python',
+      middle: ', interfaces em ',
+      frontend: 'React e TypeScript',
+      after: '. Faço deploy com Docker e Cloudflare. Venho da infraestrutura de TI e hoje desenvolvo um sistema que automatiza a criação de usuários na Anagê Imóveis.',
     },
     cta: 'Ver projetos →',
     contact: 'Falar comigo',
@@ -178,6 +178,7 @@ export const pt = {
     facts: [
       { k: 'formação', v: 'Engenharia de Software, conclusão prevista em 2027 · técnico SESI SENAI, 2023' },
       { k: 'hoje', v: 'Infra & Suporte de TI, incluindo Active Directory para mais de 230 usuários' },
+      { k: 'reconhecimento', v: 'Funcionário do trimestre na Anagê Imóveis, jan/2026' },
     ],
     timeline: [
       { year: '2023', role: 'Aprendiz de Qualidade', org: 'início da jornada' },
